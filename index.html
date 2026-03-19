@@ -988,48 +988,29 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
-    /* ── Layout ── */
     section { padding: 48px 16px; }
     .artist-container { grid-template-columns: 1fr; gap: 40px; }
     .series-grid { grid-template-columns: 1fr; gap: 12px; }
     .artist-photo-placeholder { height: 300px; }
     .academy-tile { padding: 48px 16px; }
-
-    /* ── Series header ── */
     .series-header { margin-bottom: 32px; }
-
-    /* ── Tiles ── */
     .tile-inner { padding: 20px 16px; }
     .tile-clash .tile-inner,
     .tile-single .tile-inner { padding: 36px 16px; }
-
-    /* ── Clash + Single Pass section ── */
     #clash-single { padding: 0 16px 48px !important; }
     #clash-single .series-grid { max-width: 100% !important; }
-
-    /* ── Hero ── */
     #hero { padding: 120px 16px 60px; }
     .hero-actions { flex-direction: column; align-items: center; gap: 12px; }
     .hero-actions button { width: 100%; max-width: 320px; }
-
-    /* ── Artist section ── */
     #artist { padding: 48px 16px; }
-
-    /* ── Academy ── */
     #academy { padding: 0; }
     .academy-tile { padding: 56px 16px; }
-
-    /* ── Vibes / Connect ── */
     #vibes { padding: 48px 16px; }
     #connect { padding: 48px 16px; }
     .connect-grid { flex-direction: column; }
-
-    /* ── Footer ── */
     footer { padding: 40px 16px 24px; }
     .footer-grid { flex-direction: column; gap: 32px; }
     .footer-links { flex-direction: column; gap: 8px; }
-
-    /* ── Nav ── */
     nav {
       grid-template-columns: 1fr auto;
       padding: 14px 20px;
@@ -1042,9 +1023,6 @@
 
   /* ─── GRADIENT TITLES ─── */
 
-  /* CHUBY DICE hero — already styled with c1/c2/c3/c4 spans, keep as is */
-
-  /* CHUBY DICE SERIES — warm gold to orange fire */
   #series .section-title {
     background: linear-gradient(90deg, #F5C518 0%, #FF8C00 60%, #FF4500 100%);
     -webkit-background-clip: text;
@@ -1058,7 +1036,6 @@
     background-clip: text;
   }
 
-  /* Meet Chuby Dice — royal purple to electric blue (royalty, artistry) */
   .artist-name {
     background: linear-gradient(135deg, #A855F7 0%, #6366F1 50%, #3B82F6 100%);
     -webkit-background-clip: text;
@@ -1066,7 +1043,6 @@
     background-clip: text;
   }
 
-  /* CHUBY DICE DANCEHALL ACADEMY — gold to lime green (growth, new era) */
   .academy-title {
     background: linear-gradient(90deg, #F5C518 0%, #A3E635 60%, #4ADE80 100%);
     -webkit-background-clip: text;
@@ -1080,7 +1056,6 @@
     background-clip: text;
   }
 
-  /* DANCEHALL VIBES — hot pink to cyan (energy, sound waves) */
   #vibes .section-title {
     background: linear-gradient(90deg, #E040FB 0%, #00BCD4 60%, #00E5FF 100%);
     -webkit-background-clip: text;
@@ -1094,7 +1069,6 @@
     background-clip: text;
   }
 
-  /* CONNECT WITH CHUBY — Instagram gradient (magenta to purple) */
   .connect-title {
     background: linear-gradient(90deg, #F77737 0%, #E1306C 40%, #833AB4 100%);
     -webkit-background-clip: text;
@@ -1108,14 +1082,12 @@
     background-clip: text;
   }
 
-  /* Tile titles inside series */
   .tile-clash .tile-title {
     background: linear-gradient(90deg, #00E5FF 0%, #00BCD4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-
 
   /* ─── BIG TILE SECTIONS ─── */
   .big-tile-section {
@@ -1126,17 +1098,9 @@
     background: var(--black);
   }
 
-  .clash-section {
-    margin-bottom: 48px;
-  }
-
-  .single-section {
-    margin-bottom: 48px;
-  }
-
-  .big-tile-section:last-of-type {
-    margin-bottom: 0;
-  }
+  .clash-section { margin-bottom: 48px; }
+  .single-section { margin-bottom: 48px; }
+  .big-tile-section:last-of-type { margin-bottom: 0; }
 
   .big-tile-inner {
     width: 100%;
@@ -1226,13 +1190,8 @@
   }
 
   .big-tile-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-
   .big-tile-content { display: flex; flex-direction: column; align-items: center; gap: 16px; max-width: 600px; position: relative; z-index: 2; }
-
-  /* Right side decoration */
-  .big-tile-decoration {
-    display: none;
-  }
+  .big-tile-decoration { display: none; }
 
   .clash-text-bg, .single-text-bg {
     font-family: 'Bebas Neue', sans-serif;
@@ -1267,7 +1226,6 @@
     }
     .big-tile-decoration { display: none; }
   }
-
 </style>
 </head>
 <body>
@@ -1275,7 +1233,6 @@
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#hero">CHUBY <span>DICE</span></a>
-  <!-- Center: menu button (desktop) -->
   <div class="nav-center" id="navCenter">
     <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
       MENU
@@ -1284,7 +1241,6 @@
       </svg>
     </button>
   </div>
-  <!-- Right: book now (desktop) + menu btn (mobile) -->
   <div class="nav-right">
     <button class="menu-btn" id="menuBtnMobile" onclick="toggleMenu()" style="display:none;">
       MENU
@@ -1368,7 +1324,7 @@
       </div>
     </div>
 
-    <!-- Tile 3 - Featured / Full Collection (full width, gold border) -->
+    <!-- Tile 3 - Featured / Full Collection -->
     <div class="tile tile-featured" style="position:relative;overflow:hidden;min-height:160px;">
       <img src="images/e03deced0cad.png" alt="Full Collection" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" / loading="lazy">
       <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.85) 0%,rgba(10,10,10,0.85) 50%,rgba(10,10,10,0.3) 100%);z-index:1;pointer-events:none;"></div>
@@ -1390,7 +1346,7 @@
   </div>
 </section>
 
-<!-- CLASH + SINGLE PASS TILES (now inside the series section flow) -->
+<!-- CLASH + SINGLE PASS TILES -->
 <section id="clash-single" style="background:var(--dark);padding:0 80px 80px;border-top:none;">
   <div class="series-grid" style="max-width:960px;margin:0 auto;">
 
@@ -1444,13 +1400,13 @@
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
     <span class="coming-soon-tag" style="position:relative;z-index:2;">Coming Soon</span>
     <div style="position:relative;z-index:2;width:100%;text-align:center;display:flex;flex-direction:column;align-items:center;">
-    <h2 class="academy-title">CHUBY DICE<br/><span>DANCEHALL ACADEMY</span></h2>
-    <p class="academy-launch">Launching June 2026</p>
-    <p class="academy-desc">
-      A new era of dancehall education. Full programs, certifications, and community building
-      — all rooted in authentic Caribbean culture.
-    </p>
-    <button class="btn-primary" onclick="location.href='academy.html'">Learn More</button>
+      <h2 class="academy-title">CHUBY DICE<br/><span>DANCEHALL ACADEMY</span></h2>
+      <p class="academy-launch">Launching June 2026</p>
+      <p class="academy-desc">
+        A new era of dancehall education. Full programs, certifications, and community building
+        — all rooted in authentic Caribbean culture.
+      </p>
+      <button class="btn-primary" onclick="location.href='academy.html'">Learn More</button>
     </div>
   </div>
 </section>
@@ -1564,17 +1520,15 @@
   });
 </script>
 
-
 <script src="/chatbot.js"></script>
 
 <!-- 3D card tilt + sheen -->
 <script>
 (function () {
-  var MAX_TILT = 12; // degrees
+  var MAX_TILT = 12;
   var SHEEN_OPACITY = 0.18;
 
   function initTilt(card) {
-    // inject sheen layer
     var sheen = document.createElement('div');
     sheen.style.cssText = [
       'position:absolute', 'inset:0', 'border-radius:inherit',
@@ -1591,17 +1545,16 @@
       var rect = card.getBoundingClientRect();
       var cx = e.clientX - rect.left;
       var cy = e.clientY - rect.top;
-      var px = cx / rect.width;   // 0..1
-      var py = cy / rect.height;  // 0..1
-      var rx = (py - 0.5) * -MAX_TILT * 2;  // tilt X axis
-      var ry = (px - 0.5) *  MAX_TILT * 2;  // tilt Y axis
+      var px = cx / rect.width;
+      var py = cy / rect.height;
+      var rx = (py - 0.5) * -MAX_TILT * 2;
+      var ry = (px - 0.5) *  MAX_TILT * 2;
 
       card.style.transform =
         'perspective(800px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) scale3d(1.03,1.03,1.03)';
       card.style.boxShadow =
         (ry * 1.5) + 'px ' + (-rx * 1.5) + 'px 40px rgba(0,0,0,0.5)';
 
-      // sheen follows cursor
       sheen.style.background =
         'radial-gradient(circle at ' + (px * 100) + '% ' + (py * 100) + '%, ' +
         'rgba(255,255,255,' + SHEEN_OPACITY + ') 0%, rgba(255,255,255,0) 65%)';
@@ -1668,5 +1621,6 @@
   });
 })();
 </script>
+
 </body>
 </html>
