@@ -292,15 +292,55 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ─── CAROUSEL DOTS ─── */
+  .carousel-dots {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    padding: 20px 0 0;
+  }
+  .c-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    padding: 0; flex-shrink: 0;
+  }
+  .c-dot.active {
+    background: var(--yellow);
+    transform: scale(1.4);
+  }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 768px) {
     section, .hero, .cards-section { padding-left: 16px !important; padding-right: 16px !important; }
-    .cards-container { grid-template-columns: 1fr; }
+    .cards-container {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 12px;
+      padding: 0 16px 100px;
+      scroll-padding-left: 16px;
+      grid-template-columns: unset;
+      max-width: unset;
+      margin: 40px 0 0;
+    }
+    .cards-container::-webkit-scrollbar { display: none; }
+    .card {
+      flex: 0 0 calc(100vw - 56px);
+      min-width: 0;
+      scroll-snap-align: start;
+    }
     nav { grid-template-columns: 1fr auto; padding: 14px 20px; }
     .nav-center { display: none; }
     #navBookBtn { display: none; }
     #menuBtnMobile { display: flex !important; }
     .menu-overlay { top: 56px; right: 16px; width: calc(100vw - 32px); }
+    .carousel-dots { display: flex; }
   }
 </style>
 </head>
@@ -409,6 +449,7 @@
   </div>
 
 </div>
+<div class="carousel-dots" id="cityDots"></div>
 
 <script>
   function toggleMenu() {
@@ -434,6 +475,36 @@
   });
 </script>
 <script src="/chatbot.js"></script>
+
+<script>
+(function() {
+  if (window.innerWidth > 768) return;
+  var grid = document.querySelector('.cards-container');
+  var dots = document.getElementById('cityDots');
+  if (!grid || !dots) return;
+  var cards = Array.from(grid.querySelectorAll('.card'));
+  cards.forEach(function(card, i) {
+    var dot = document.createElement('button');
+    dot.className = 'c-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
+    dot.addEventListener('click', function() {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    });
+    dots.appendChild(dot);
+  });
+  var dotEls = Array.from(dots.querySelectorAll('.c-dot'));
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        var idx = cards.indexOf(entry.target);
+        if (idx < 0) return;
+        dotEls.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+      }
+    });
+  }, { root: grid, threshold: 0.5 });
+  cards.forEach(function(c) { obs.observe(c); });
+})();
+</script>
 
 <!-- BBK PRODUCTIONS CREDIT -->
 <footer style="background:#111111;border-top:1px solid #2A2A2A;padding:20px;text-align:center;">

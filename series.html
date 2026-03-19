@@ -377,6 +377,27 @@
   .card:nth-child(3) { animation-delay: 0.3s; }
   .card:nth-child(4) { animation-delay: 0.4s; }
 
+  /* ─── CAROUSEL DOTS ─── */
+  .carousel-dots {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    padding: 20px 0 0;
+  }
+  .c-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    padding: 0; flex-shrink: 0;
+  }
+  .c-dot.active {
+    background: var(--yellow);
+    transform: scale(1.4);
+  }
+
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
     .card-full, .card-single { flex-direction: column; }
@@ -384,13 +405,36 @@
     .card-full .card-body, .card-single .card-body { padding: 24px; }
   }
   @media (max-width: 640px) {
-    section { padding: 48px 16px; }
-    .series-grid { grid-template-columns: 1fr; gap: 12px; }
-    .card-full, .card-single { margin: 0; }
+    .series-container { padding: 0 0 80px; }
+    .series-grid {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: 12px;
+      padding: 0 16px;
+      scroll-padding-left: 16px;
+      grid-template-columns: unset;
+    }
+    .series-grid::-webkit-scrollbar { display: none; }
+    .card {
+      flex: 0 0 calc(100vw - 56px);
+      min-width: 0;
+      scroll-snap-align: start;
+    }
+    .card-full, .card-single {
+      flex-direction: column;
+      grid-column: auto;
+    }
+    .card-full .card-img, .card-single .card-img { width: 100%; height: 220px; }
+    .card-full .card-body, .card-single .card-body { padding: 20px; }
+    .best-value-badge { top: 12px; right: 12px; }
     nav { grid-template-columns: 1fr auto; padding: 14px 20px; }
     .nav-center { display: none; }
     #navBookBtn { display: none; }
     #menuBtnMobile { display: flex !important; }
+    .carousel-dots { display: flex; }
   }
 </style>
 </head>
@@ -518,6 +562,7 @@
     </div>
 
   </div>
+  <div class="carousel-dots" id="seriesDots"></div>
 </div>
 
 <script>
@@ -633,6 +678,36 @@
 })();
 </script>
 <script src="/chatbot.js"></script>
+
+<script>
+(function() {
+  if (window.innerWidth > 640) return;
+  var grid = document.querySelector('.series-grid');
+  var dots = document.getElementById('seriesDots');
+  if (!grid || !dots) return;
+  var cards = Array.from(grid.querySelectorAll('.card'));
+  cards.forEach(function(card, i) {
+    var dot = document.createElement('button');
+    dot.className = 'c-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to card ' + (i + 1));
+    dot.addEventListener('click', function() {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    });
+    dots.appendChild(dot);
+  });
+  var dotEls = Array.from(dots.querySelectorAll('.c-dot'));
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        var idx = cards.indexOf(entry.target);
+        if (idx < 0) return;
+        dotEls.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+      }
+    });
+  }, { root: grid, threshold: 0.5 });
+  cards.forEach(function(c) { obs.observe(c); });
+})();
+</script>
 
 <!-- BBK PRODUCTIONS CREDIT -->
 <footer style="background:#111111;border-top:1px solid #2A2A2A;padding:20px;text-align:center;">
