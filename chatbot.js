@@ -6,21 +6,28 @@
       position: fixed;
       bottom: 28px;
       right: 28px;
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
+      height: 48px;
+      padding: 0 18px 0 14px;
+      border-radius: 24px;
       background: #F5C518;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
       box-shadow: 0 4px 20px rgba(245,197,24,0.4);
       z-index: 9999;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    #cd-chat-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(245,197,24,0.55); }
-    #cd-chat-btn svg { width: 26px; height: 26px; fill: #0A0A0A; }
+    #cd-chat-btn:hover { transform: scale(1.05); box-shadow: 0 6px 28px rgba(245,197,24,0.55); }
+    #cd-chat-btn svg { width: 22px; height: 22px; fill: #0A0A0A; flex-shrink: 0; }
+    #cd-chat-btn-label {
+      font-family: 'Bebas Neue', 'Barlow', sans-serif;
+      font-size: 1rem;
+      color: #0A0A0A;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
 
     #cd-chat-window {
       position: fixed;
@@ -206,18 +213,19 @@
 
   /* ── Inject HTML ── */
   const html = `
-    <button id="cd-chat-btn" aria-label="Open chat">
+    <button id="cd-chat-btn" aria-label="Open Digital Dice chat">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
       </svg>
+      <span id="cd-chat-btn-label">Digital Dice</span>
     </button>
     <div id="cd-chat-badge">1</div>
-    <div id="cd-chat-window" role="dialog" aria-label="Chuby Dice Chat">
+    <div id="cd-chat-window" role="dialog" aria-label="Digital Dice Chat">
       <div id="cd-chat-header">
         <div id="cd-chat-header-left">
-          <div id="cd-chat-avatar">CD</div>
+          <div id="cd-chat-avatar">DD</div>
           <div>
-            <div id="cd-chat-title">Chuby Dice Assistant</div>
+            <div id="cd-chat-title">Digital Dice</div>
             <div id="cd-chat-subtitle">Ask me anything</div>
           </div>
         </div>
@@ -226,7 +234,7 @@
         </button>
       </div>
       <div id="cd-chat-messages">
-        <div class="cd-msg bot">Hey! I'm the Chuby Dice assistant 👋 Ask me about classes, events, coaching, or anything about the Dancehall experience.</div>
+        <div class="cd-msg bot">Hey! I'm Digital Dice 👋 Ask me about classes, events, coaching, or anything about the Dancehall experience.</div>
       </div>
       <div id="cd-typing"><span></span><span></span><span></span></div>
       <form id="cd-chat-form">
