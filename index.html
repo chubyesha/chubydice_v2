@@ -200,7 +200,40 @@
     overflow: hidden;
   }
 
-  /* hero background is now a static image */
+  /* ─── HERO VIDEO BACKGROUND ─── */
+  .hero-video-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    pointer-events: none;
+    filter: blur(30px) brightness(0.5);
+    transform: scale(1.15);
+  }
+  .hero-video-bg.active {
+    opacity: 1;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: auto;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    pointer-events: none;
+  }
+  .hero-video.active {
+    opacity: 1;
+  }
 
   #hero::before {
     content: '';
@@ -208,10 +241,10 @@
     inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(10,10,10,0.45) 0%,
-      rgba(10,10,10,0.25) 35%,
-      rgba(10,10,10,0.6) 75%,
-      rgba(10,10,10,1) 100%
+      rgba(10,10,10,0.3) 0%,
+      rgba(10,10,10,0.15) 35%,
+      rgba(10,10,10,0.45) 75%,
+      rgba(10,10,10,0.95) 100%
     );
     z-index: 1;
     pointer-events: none;
@@ -1269,7 +1302,18 @@
 
 <!-- HERO -->
 <section id="hero">
-  <img src="images/450034373c45.jpg" alt="Chuby Dice" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.75;" />
+  <!-- Blurred background fills -->
+  <video class="hero-video-bg active" src="videos/1.mp4" autoplay muted loop playsinline></video>
+  <video class="hero-video-bg" src="videos/2.mp4" muted loop playsinline></video>
+  <video class="hero-video-bg" src="videos/3.mp4" muted loop playsinline></video>
+  <video class="hero-video-bg" src="videos/4.mp4" muted loop playsinline></video>
+  <video class="hero-video-bg" src="videos/5.mp4" muted loop playsinline></video>
+  <!-- Sharp foreground videos -->
+  <video class="hero-video active" src="videos/1.mp4" autoplay muted loop playsinline></video>
+  <video class="hero-video" src="videos/2.mp4" muted loop playsinline></video>
+  <video class="hero-video" src="videos/3.mp4" muted loop playsinline></video>
+  <video class="hero-video" src="videos/4.mp4" muted loop playsinline></video>
+  <video class="hero-video" src="videos/5.mp4" muted loop playsinline></video>
   <h1 class="hero-title">
     <span class="c1">C</span><span class="c2">HUBY</span> <span class="c3">D</span><span class="c4">ICE</span>
   </h1>
@@ -1465,7 +1509,7 @@
     <div>
       <div class="footer-logo">CHUBY <span>DICE</span></div>
       <p class="footer-tagline">"Dancehall belongs to everybody — but it must stay connected to where it comes from."</p>
-      <p class="footer-address"><strong>The Space</strong> · 318 Chapel St, Prahran VIC 3181</p>
+      <a href="https://maps.app.goo.gl/KFathEk6HmMajmHH7" target="_blank" rel="noopener" class="footer-address" style="text-decoration:none;display:block;"><strong>HD Entertainment</strong> · Enter Via, Mount St, Prahran VIC 3181, Australia</a>
       <div class="footer-socials" style="margin-top:20px;">
         <a href="https://www.instagram.com/chuby_dice" target="_blank" class="social-icon">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
@@ -1618,6 +1662,34 @@
       scrambleTitle(title);
     });
   });
+})();
+</script>
+
+<!-- Hero video crossfade -->
+<script>
+(function () {
+  var INTERVAL = 6000;
+  var bgs = document.querySelectorAll('.hero-video-bg');
+  var vids = document.querySelectorAll('.hero-video');
+  if (vids.length < 2) return;
+  var current = 0;
+
+  setInterval(function () {
+    var prev = current;
+    current = (current + 1) % vids.length;
+    bgs[prev].classList.remove('active');
+    bgs[current].classList.add('active');
+    vids[prev].classList.remove('active');
+    vids[current].classList.add('active');
+    bgs[current].play();
+    vids[current].play();
+    setTimeout(function () {
+      bgs[prev].pause();
+      bgs[prev].currentTime = 0;
+      vids[prev].pause();
+      vids[prev].currentTime = 0;
+    }, 1300);
+  }, INTERVAL);
 })();
 </script>
 
