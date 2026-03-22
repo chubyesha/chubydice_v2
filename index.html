@@ -20,6 +20,7 @@
 <link rel="icon" type="image/x-icon" href="images/09c9ec4a0ce4.ico"/>
 <link rel="icon" type="image/png" sizes="32x32" href="images/8cbe784dd268.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="images/8cbe784dd268.png"/>
+<link rel="preload" as="image" href="images/450034373c45.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
@@ -37,7 +38,13 @@
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  /* Mobile touch optimizations */
+  * { -webkit-tap-highlight-color: transparent; }
+  button, a, [onclick] { touch-action: manipulation; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
 
   body {
     font-family: 'Barlow', sans-serif;
@@ -202,6 +209,8 @@
 
   #hero video {
     transition: opacity 0.8s ease;
+    will-change: opacity;
+    transform: translateZ(0); /* promote to GPU layer */
   }
 
   /* hero background is now a video */
@@ -325,6 +334,12 @@
 
   /* ─── SECTION BASE ─── */
   section { padding: 80px 80px; }
+
+  /* Defer rendering of off-screen sections for faster initial paint */
+  #series, #artist, #academy, #vibes, #connect {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
+  }
 
   .section-label {
     font-family: 'Barlow Condensed', sans-serif;
@@ -1023,7 +1038,9 @@
     #navBookBtn { display: none; }
     #menuBtnMobile { display: flex !important; }
     .menu-overlay { top: 56px; right: 16px; width: calc(100vw - 32px); }
-    #hero video { preload: metadata; }
+    /* Remove expensive backdrop-blur on mobile GPU */
+    nav { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(10,10,10,0.96); }
+    .menu-overlay { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(14,14,14,0.97); }
   }
 
   /* ─── GRADIENT TITLES ─── */
@@ -1308,7 +1325,7 @@
 
     <!-- Tile 1: Lovers' Rock -->
     <div class="tile" style="position:relative;overflow:hidden;background:transparent;">
-      <img src="images/3e8ee0d9a5c6.png" alt="Lovers Rock" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" / loading="lazy">
+      <img src="images/3e8ee0d9a5c6.png" alt="Lovers Rock" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
       <div class="tile-inner" style="position:relative;z-index:2;">
         <h3 class="tile-title">LOVERS' ROCK</h3>
         <p class="tile-meta">4 weeks &nbsp;·&nbsp; <strong>$100</strong></p>
@@ -1322,7 +1339,7 @@
 
     <!-- Tile 2: March Back in Time -->
     <div class="tile" style="position:relative;overflow:hidden;">
-      <img src="images/a84b4d3eec82.png" alt="March Back in Time" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" / loading="lazy">
+      <img src="images/a84b4d3eec82.png" alt="March Back in Time" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" loading="lazy">
       <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.3) 0%,rgba(10,10,10,0.75) 100%);z-index:1;pointer-events:none;"></div>
       <div class="tile-inner" style="position:relative;z-index:2;">
         <h3 class="tile-title">MARCH BACK IN TIME</h3>
@@ -1337,7 +1354,7 @@
 
     <!-- Tile 3 - Featured / Full Collection -->
     <div class="tile tile-featured" style="position:relative;overflow:hidden;min-height:160px;">
-      <img src="images/e03deced0cad.png" alt="Full Collection" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" / loading="lazy">
+      <img src="images/e03deced0cad.png" alt="Full Collection" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" loading="lazy">
       <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.85) 0%,rgba(10,10,10,0.85) 50%,rgba(10,10,10,0.3) 100%);z-index:1;pointer-events:none;"></div>
       <span class="best-value-badge">BEST VALUE</span>
       <div class="tile-inner" style="position:relative;z-index:2;">
@@ -1429,7 +1446,7 @@
     <h2 class="section-title">DANCEHALL VIBES –<br/><span>WHAT YOU'LL MOVE TO</span></h2>
     <div class="playlist-placeholder">
       <a href="https://music.youtube.com/playlist?list=PLrAdqr-L9aFuh7nhS0tQS6kzWIUGm4aBL&si=9x9uK9TnQ-uZxcIW" target="_blank" style="display:block;cursor:pointer;">
-        <img src="images/2104822c8d2d.png" alt="Dancehall Vibes Playlist" style="width:180px;height:180px;border-radius:14px;object-fit:cover;display:block;transition:transform 0.2s;box-shadow:0 8px 32px rgba(0,0,0,0.5);" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/ loading="lazy">
+        <img src="images/2104822c8d2d.png" alt="Dancehall Vibes Playlist" style="width:180px;height:180px;border-radius:14px;object-fit:cover;display:block;transition:transform 0.2s;box-shadow:0 8px 32px rgba(0,0,0,0.5);" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
       </a>
       <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);letter-spacing:0.05em;">Dancehall Vibes · YouTube Music</p>
     </div>
@@ -1450,7 +1467,7 @@
       freestyle clips, and behind-the-scenes energy. 🎬🔥
     </p>
     <div class="insta-card" onclick="window.open('https://www.instagram.com/chuby_dice','_blank')" style="cursor:pointer;">
-      <div class="insta-avatar" style="background:none;padding:0;overflow:hidden;"><img src="images/fd332cb6b99b.jpg" alt="Chuby Dice" style="width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:50%;display:block;"/ loading="lazy"></div>
+      <div class="insta-avatar" style="background:none;padding:0;overflow:hidden;"><img src="images/fd332cb6b99b.jpg" alt="Chuby Dice" style="width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:50%;display:block;" loading="lazy"></div>
       <div class="insta-handle">
         @chuby_dice
         <span class="verified">✓</span>
@@ -1530,22 +1547,17 @@
     }
   });
 
-  // Auto-play hero video without delay
-  document.addEventListener('DOMContentLoaded', function() {
-    const heroVideo = document.querySelector('#hero video');
-    if (heroVideo) {
-      heroVideo.play().catch(function(error) {
-        console.log('Video autoplay failed:', error);
-      });
-    }
-  });
+  // Video autoplay is handled by the crossfade script below
 </script>
 
 <script src="/chatbot.js"></script>
 
-<!-- 3D card tilt + sheen -->
+<!-- 3D card tilt + sheen (desktop only) -->
 <script>
 (function () {
+  // Skip on touch devices — mousemove doesn't fire, wastes resources
+  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+
   var MAX_TILT = 12;
   var SHEEN_OPACITY = 0.18;
 
@@ -1643,49 +1655,45 @@
 })();
 </script>
 
-<!-- Hero video crossfade (all devices) -->
+<!-- Hero video crossfade -->
 <script>
 (function () {
-  var heroVideo = document.getElementById('heroVideo');
-  var videos = document.querySelectorAll('#hero video');
-  
-  if (videos.length < 1) return;
+  var videos = Array.prototype.slice.call(document.querySelectorAll('#hero video'));
+  if (!videos.length) return;
+
+  var isMobile = window.innerWidth < 768 || ('ontouchstart' in window);
+
+  // Respect data-saver / slow connections — show poster only
+  var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (conn && (conn.saveData || conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g')) {
+    videos.forEach(function (v) { v.style.display = 'none'; });
+    return;
+  }
+
+  if (isMobile) {
+    // Mobile: play only the first video — no rotation, saves bandwidth & battery
+    for (var i = 1; i < videos.length; i++) {
+      videos[i].style.display = 'none';
+    }
+    videos[0].preload = 'auto';
+    videos[0].play().catch(function () {});
+    return;
+  }
+
+  // Desktop: preload all, then crossfade
+  videos.forEach(function (v) { v.preload = 'auto'; });
+  videos[0].play().catch(function () {});
+
+  if (videos.length < 2) return;
   var current = 0;
-  
-  // Detect if on mobile for preload strategy
-  function isMobile() {
-    return window.innerWidth < 768;
-  }
-  
-  // Preload videos intelligently
-  setTimeout(function() {
-    videos.forEach(function(v, i) {
-      v.preload = isMobile() ? 'metadata' : 'auto';
-    });
-  }, isMobile() ? 1000 : 500);
-  
-  // Try to play first video
-  setTimeout(function() {
-    videos[0].play().catch(function(err) {
-      console.log('Video autoplay failed');
-    });
-  }, isMobile() ? 500 : 100);
-  
-  // Video crossfade rotation
-  if (videos.length > 1) {
-    setInterval(function () {
-      var prev = current;
-      current = (current + 1) % videos.length;
-      
-      videos[prev].style.opacity = '0';
-      videos[prev].pause();
-      
-      videos[current].style.opacity = '0.75';
-      videos[current].play().catch(function(err) {
-        console.log('Video play failed at rotation');
-      });
-    }, 6000);
-  }
+  setInterval(function () {
+    var prev = current;
+    current = (current + 1) % videos.length;
+    videos[prev].style.opacity = '0';
+    videos[prev].pause();
+    videos[current].style.opacity = '0.75';
+    videos[current].play().catch(function () {});
+  }, 6000);
 })();
 </script>
 
