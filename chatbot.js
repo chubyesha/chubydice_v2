@@ -394,3 +394,77 @@
     }
   });
 })();
+
+/* ── Cursor Particle Trail (desktop only) ── */
+(function () {
+  if ('ontouchstart' in window || window.innerWidth <= 768) return;
+
+  const COLORS = ['#F5C518', '#E040FB', '#FFD700', '#CC00FF', '#FFF176'];
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  Object.assign(canvas.style, {
+    position: 'fixed', top: '0', left: '0',
+    width: '100%', height: '100%',
+    pointerEvents: 'none', zIndex: '99998',
+  });
+  document.body.appendChild(canvas);
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const particles = [];
+  let mx = -999, my = -999;
+
+  window.addEventListener('mousemove', function (e) {
+    mx = e.clientX;
+    my = e.clientY;
+    // Spawn 2-3 particles per move
+    const count = Math.floor(Math.random() * 2) + 2;
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x:  mx + (Math.random() - 0.5) * 6,
+        y:  my + (Math.random() - 0.5) * 6,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.9) * 1.4,
+        r:  Math.random() * 3.5 + 1.5,
+        alpha: 0.85,
+        decay: Math.random() * 0.022 + 0.018,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      });
+    }
+  });
+
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.04; // gentle gravity
+      p.r  *= 0.97;
+      p.alpha -= p.decay;
+
+      if (p.alpha <= 0 || p.r < 0.3) { particles.splice(i, 1); continue; }
+
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      // Glow
+      ctx.shadowBlur  = 10;
+      ctx.shadowColor = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
