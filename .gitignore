@@ -1,0 +1,40 @@
+# Screenshots
+screenshots/
+
+# IDE directories
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Session recovery documents
+documents/
+
+# Node (for netlify functions development)
+node_modules/
+.netlify/
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Environment variables and secrets
+.env
+.env.*
+.env.local
+.env.production
+.env.staging
+
+# Claude Code local config
+.claude/
+
+# Certificates and keys
+*.pem
+*.key
+*.p12
+*.pfx
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini

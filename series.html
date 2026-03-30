@@ -495,6 +495,40 @@
   .card:nth-child(3) { animation-delay: 0.3s; }
   .card:nth-child(4) { animation-delay: 0.4s; }
 
+  /* ─── ENDS BADGE (countdown) ─── */
+  .ends-badge {
+    position: absolute;
+    top: 14px; right: 14px;
+    z-index: 10;
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(255,70,70,0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,70,70,0.25);
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: #ff6b6b;
+  }
+  .ends-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #ff6b6b;
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  /* ─── COMING SOON PRICE ─── */
+  .coming-soon-price {
+    color: rgba(255,255,255,0.25);
+    font-weight: 600;
+    font-style: italic;
+  }
+
   /* ─── CAROUSEL DOTS ─── */
   .carousel-dots {
     display: none;
@@ -562,11 +596,12 @@
 <div class="menu-overlay" id="menuOverlay">
   <a href="index.html">Home</a>
   <a href="series.html" class="active">Chuby Dice Series</a>
-  <a href="in-ya-city.html">Chuby Dice in Ya City</a>
-  <a href="coaching.html">1:1 Coaching &amp; Programs</a>
-  <a href="clash.html">Clash</a>
+  <a href="clash.html">Clash Inna Dancehall</a>
+  <a href="coaching.html">Professional 1:1 Coaching &amp; Programs</a>
+  <a href="academy.html">Dancehall Academy — Launching 2026</a>
   <a href="about.html">About Chuby Dice</a>
-  <a href="academy.html">Chuby Dice Dancehall Academy</a>
+  <a href="in-ya-city.html">Chuby Dice in Ya City</a>
+  <a href="past-series.html">Past Sessions</a>
   <a href="contact.html">Contact / Instagram</a>
   <div class="menu-divider"></div>
   <button class="menu-book" onclick="location.href='series.html'">Book a Class</button>
@@ -578,7 +613,7 @@
   <p class="page-hero-desc">
     Learn from the Lead of Black Dice Crew from Spanish Town, Jamaica,
     as he brings his unique grounded flow &amp; creative vision through
-    focused Dancehall modules in Q1 2026
+    focused Dancehall modules in 2026
   </p>
 </div>
 
@@ -600,34 +635,12 @@
   </div>
   <div class="series-grid">
 
-    <!-- LOVERS' ROCK -->
+    <!-- MARCH BACK IN TIME (ending soon) -->
     <div class="card">
       <div class="card-img" style="position:relative;overflow:hidden;">
-        <img src="images/3e8ee0d9a5c6.png" alt="Lovers Rock" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" />
+        <img src="images/a84b4d3eec82.png" alt="March Back in Time" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" loading="lazy">
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
-        <div class="card-img-title" style="position:relative;z-index:2;">
-          <h3>LOVERS' ROCK</h3>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-meta">
-          <span>4 weeks</span>
-          <span class="card-meta-dot"></span>
-          <strong>$100</strong>
-        </div>
-        <p class="card-desc">Raw Dancehall lyrics and movement, flow-led storytelling, and February energy... mek yuh ready fi love.</p>
-        <div class="card-actions">
-          <button class="btn-book" onclick="window.open('https://buy.stripe.com/7sY3cvgEH7Nw25c7l54F207','_blank')">Book Now</button>
-          <button class="btn-more" onclick="location.href='lovers-rock.html'">More</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- MARCH BACK IN TIME -->
-    <div class="card">
-      <div class="card-img" style="position:relative;overflow:hidden;">
-        <img src="images/a84b4d3eec82.png" alt="March Back in Time" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" / loading="lazy">
-        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
+        <span class="ends-badge" id="countdownBadge"></span>
         <div class="card-img-title" style="position:relative;z-index:2;">
           <h3>MARCH BACK IN TIME</h3>
         </div>
@@ -635,6 +648,8 @@
       <div class="card-body">
         <div class="card-meta">
           <span>5 weeks</span>
+          <span class="card-meta-dot"></span>
+          <span>March 2026</span>
           <span class="card-meta-dot"></span>
           <strong>$125</strong>
         </div>
@@ -646,33 +661,88 @@
       </div>
     </div>
 
-    <!-- FULL COLLECTION -->
-    <div class="card card-full">
-      <span class="best-value-badge">BEST VALUE</span>
+    <!-- PRAISE FLOW -->
+    <div class="card">
       <div class="card-img" style="position:relative;overflow:hidden;">
-        <img src="images/e03deced0cad.png" alt="Full Collection" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" / loading="lazy">
+        <img src="images/praise-flow.png" alt="Praise Flow" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
         <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
         <div class="card-img-title" style="position:relative;z-index:2;">
-          <h3>CHUBY DICE SERIES</h3>
+          <h3>PRAISE FLOW</h3>
         </div>
       </div>
       <div class="card-body">
-        <p class="full-collection-label">Full Collection</p>
         <div class="card-meta">
-          <span>9 weeks</span>
+          <span>April 2026</span>
           <span class="card-meta-dot"></span>
-          <strong>$220</strong>
+          <span>Tuesdays · 7:30–8:30pm</span>
+          <span class="card-meta-dot"></span>
+          <strong>From $30</strong>
         </div>
-        <p class="card-desc">Access to the full Q1 2026 Chuby Dice Series at a discounted rate, providing a 9-week "term-like" combined course.</p>
+        <p class="card-desc">"Let's enter this hall, under one accord, to praise the Lord, no matter the faith" — Chuby Dice</p>
         <div class="card-actions">
-          <button class="btn-book" onclick="window.open('https://buy.stripe.com/eVq6oHbkn5Fo25ccFp4F205','_blank')">Book Now</button>
-          <button class="btn-more" onclick="location.href='full-series.html'">More</button>
+          <button class="btn-more" onclick="location.href='praise-flow.html'">More Info</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOTHERLAND -->
+    <div class="card">
+      <div class="card-img" style="position:relative;overflow:hidden;">
+        <img src="images/motherland.png" alt="Motherland" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
+        <div class="card-img-title" style="position:relative;z-index:2;">
+          <h3>MOTHERLAND</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span>May 2026</span>
+          <span class="card-meta-dot"></span>
+          <span>Tuesdays · 7:30–8:30pm</span>
+          <span class="card-meta-dot"></span>
+          <strong>From $30</strong>
+        </div>
+        <p class="card-desc">Thank your mum with Jamaican Dancehall</p>
+        <div class="card-actions">
+          <button class="btn-more" onclick="location.href='motherland.html'">More Info</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DANCEHALL ROYALTY -->
+    <div class="card">
+      <div class="card-img" style="position:relative;overflow:hidden;">
+        <img src="images/dancehall-royalty.png" alt="Dancehall Royalty" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;opacity:0.85;" loading="lazy">
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.1) 0%,rgba(10,10,10,0.65) 100%);z-index:1;pointer-events:none;"></div>
+        <div class="card-img-title" style="position:relative;z-index:2;">
+          <h3>DANCEHALL ROYALTY</h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span>June 2026</span>
+          <span class="card-meta-dot"></span>
+          <span>Tuesdays · 7:30–8:30pm</span>
+          <span class="card-meta-dot"></span>
+          <strong>From $30</strong>
+        </div>
+        <p class="card-desc">Dancehall Royalty fi di Academy</p>
+        <div class="card-actions">
+          <button class="btn-more" onclick="location.href='dancehall-royalty.html'">More Info</button>
         </div>
       </div>
     </div>
 
   </div>
   <div class="carousel-dots" id="seriesDots"></div>
+
+  <!-- Past Sessions Link -->
+  <div style="text-align:center;padding:48px 0 0;">
+    <a href="past-series.html" style="display:inline-flex;align-items:center;gap:10px;font-family:'Barlow',sans-serif;font-size:0.82rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s,gap 0.2s;" onmouseover="this.style.color='#F5C518';this.style.gap='14px'" onmouseout="this.style.color='rgba(255,255,255,0.3)';this.style.gap='10px'">
+      Looking for a past session? View Past Sessions
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
 </div>
 
 <script>
@@ -956,6 +1026,39 @@
   
   // Initialize
   initializeStack();
+})();
+</script>
+
+<!-- Countdown Timer for March Back in Time -->
+<script>
+(function() {
+  var badge = document.getElementById('countdownBadge');
+  if (!badge) return;
+  var endDate = new Date('2026-03-31T23:59:59+11:00').getTime(); // AEDT
+
+  function update() {
+    var now = new Date().getTime();
+    var diff = endDate - now;
+
+    if (diff <= 0) {
+      badge.innerHTML = '<span class="ends-dot"></span> Ended';
+      return;
+    }
+
+    var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    if (days > 1) {
+      badge.innerHTML = '<span class="ends-dot"></span> Ends in ' + days + ' days';
+    } else if (days === 1) {
+      badge.innerHTML = '<span class="ends-dot"></span> Ends tomorrow';
+    } else {
+      badge.innerHTML = '<span class="ends-dot"></span> Ends in ' + hours + 'h';
+    }
+  }
+
+  update();
+  setInterval(update, 60000);
 })();
 </script>
 
