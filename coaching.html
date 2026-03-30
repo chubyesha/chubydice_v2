@@ -244,7 +244,7 @@
     color: rgba(255,255,255,0.35); margin: 32px 0 14px;
   }
 
-  /* Accordion — static pill boxes, no expand */
+  /* Accordion — expandable */
   .accordion { display: flex; flex-direction: column; gap: 8px; }
   .acc-item {
     background: rgba(255,255,255,0.03);
@@ -252,7 +252,7 @@
     border-radius: 10px;
     transition: border-color 0.2s, background 0.2s;
   }
-  .acc-item:hover {
+  .acc-item:hover, .acc-item.open {
     border-color: rgba(245,197,24,0.3);
     background: rgba(245,197,24,0.03);
   }
@@ -260,11 +260,22 @@
     padding: 16px 20px;
     font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em;
     color: rgba(255,255,255,0.75);
-    cursor: default;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
   }
-  .acc-item:hover .acc-header { color: var(--white); }
-  .acc-arrow { display: none; }
-  .acc-body { display: none; }
+  .acc-item:hover .acc-header, .acc-item.open .acc-header { color: var(--white); }
+  .acc-arrow {
+    transition: transform 0.3s ease;
+    flex-shrink: 0; opacity: 0.4;
+  }
+  .acc-item.open .acc-arrow { transform: rotate(180deg); opacity: 0.8; }
+  .acc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease;
+    padding: 0 20px;
+  }
+  .acc-item.open .acc-body { max-height: 500px; padding: 0 20px 18px; }
+  .acc-body p { font-size: 0.88rem; line-height: 1.7; color: rgba(255,255,255,0.5); }
 
   /* Right: booking card */
   .booking-card {
@@ -421,10 +432,13 @@
 <div class="menu-overlay" id="menuOverlay">
   <a href="index.html">Home</a>
   <a href="series.html">Chuby Dice Series</a>
-  <a href="in-ya-city.html">Chuby Dice in Ya City</a>
-  <a href="coaching.html" class="active">1:1 Coaching &amp; Programs</a>
+  <a href="clash.html">Clash Inna Dancehall</a>
+  <a href="coaching.html" class="active">Professional 1:1 Coaching &amp; Programs</a>
+  <a href="academy.html">Dancehall Academy — Launching 2026</a>
   <a href="about.html">About Chuby Dice</a>
-  <a href="academy.html">Chuby Dice Dancehall Academy</a>
+  <a href="contact.html">Brand Ambassadorship</a>
+  <a href="in-ya-city.html">Chuby Dice in Ya City</a>
+  <a href="past-series.html">2026 Events (Archive)</a>
   <a href="contact.html">Contact / Instagram</a>
   <div class="menu-divider"></div>
   <button class="menu-book" onclick="location.href='series.html'">Book a Class</button>
@@ -489,27 +503,47 @@
       <div class="accordion">
         <div class="acc-item">
           <div class="acc-header">
-            Dancehall foundations &amp; movement quality
+            <span>Dancehall foundations &amp; movement quality</span>
+            <svg class="acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="acc-body">
+            <p>Build your core Dancehall technique from the ground up. Covers bounce, groove patterns, isolations, footwork and body control — all rooted in authentic Jamaican movement practice and tailored to your current level.</p>
           </div>
         </div>
         <div class="acc-item">
           <div class="acc-header">
-            Sub-genres &amp; Dancehall periods
+            <span>Sub-genres &amp; Dancehall periods</span>
+            <svg class="acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="acc-body">
+            <p>Explore the eras and styles that define Dancehall — from early 90s foundation through mid-skool to contemporary new school. Learn how each period shaped movement vocabulary, musical selections and cultural identity.</p>
           </div>
         </div>
         <div class="acc-item">
           <div class="acc-header">
-            Clash techniques versus party Dancehall
+            <span>Clash techniques versus party Dancehall</span>
+            <svg class="acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="acc-body">
+            <p>Understand the difference between competitive battle-ready movement and social party Dancehall. Develop the precision, confidence and spontaneous expression needed for both contexts.</p>
           </div>
         </div>
         <div class="acc-item">
           <div class="acc-header">
-            Choreography &amp; musicality
+            <span>Choreography &amp; musicality</span>
+            <svg class="acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="acc-body">
+            <p>Sharpen your ability to hear and move with the music. Covers musical phrasing, timing, rhythmic accents and how to build choreographic sequences that connect movement to selection.</p>
           </div>
         </div>
         <div class="acc-item">
           <div class="acc-header">
-            Dancehall history, theory &amp; contemporary practice
+            <span>Dancehall history, theory &amp; contemporary practice</span>
+            <svg class="acc-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="acc-body">
+            <p>Go deeper into the cultural, social and political roots of Dancehall. Covers key pioneers, the sound system tradition, Jamaican street culture and how contemporary Dancehall continues to evolve globally.</p>
           </div>
         </div>
       </div>
@@ -599,7 +633,17 @@
   });
 </script>
 
-
-
+<script>
+  document.querySelectorAll('.acc-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      var item = this.parentElement;
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.acc-item.open').forEach(function(openItem) {
+        openItem.classList.remove('open');
+      });
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
 </body>
 </html>
