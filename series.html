@@ -192,10 +192,22 @@
   }
 
 .series-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    cursor: grab;
+    padding: 4px 2px 16px;
+  }
+  .series-grid::-webkit-scrollbar { display: none; }
+  .series-grid.dragging { cursor: grabbing; scroll-snap-type: none; scroll-behavior: auto; }
+  .series-grid .card {
+    flex: 0 0 min(44%, 340px);
+    scroll-snap-align: start;
+  }
 
 /* Old mobile stack kept off */
 .card-stack-container {
@@ -949,5 +961,23 @@
 <footer style="background:#111111;border-top:1px solid #2A2A2A;padding:20px;text-align:center;">
   <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Site made and managed by BBK Productions</p>
 </footer>
+<script>
+(function() {
+  var carousel = document.querySelector('.series-grid');
+  if (!carousel) return;
+  var isDown = false, startX, scrollLeft;
+  carousel.addEventListener('mousedown', function(e) {
+    isDown = true; carousel.classList.add('dragging');
+    startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft;
+    e.preventDefault();
+  });
+  carousel.addEventListener('mouseleave', function() { isDown = false; carousel.classList.remove('dragging'); });
+  carousel.addEventListener('mouseup', function() { isDown = false; carousel.classList.remove('dragging'); });
+  carousel.addEventListener('mousemove', function(e) {
+    if (!isDown) return;
+    carousel.scrollLeft = scrollLeft - (e.pageX - carousel.offsetLeft - startX) * 1.5;
+  });
+})();
+</script>
 </body>
 </html>
