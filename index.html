@@ -329,31 +329,25 @@ nav.scrolled {
 /* Hero title */
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(6rem, 20vw, 16rem);
+  font-size: clamp(3.5rem, 12vw, 7rem);
   line-height: 0.88;
   letter-spacing: 0.02em;
   position: relative;
   opacity: 0; animation: titleReveal 1s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
 }
 .hero-title .line1 {
-  display: block;
+  display: inline;
   background: linear-gradient(135deg, #ffffff 0%, var(--purple-200) 40%, var(--purple-400) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .hero-title .line2 {
-  display: block;
+  display: inline;
   background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 50%, var(--pink) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
 /* Glitch effect on hover */
-.hero-title:hover .line1 {
-  animation: glitch 0.4s steps(2) forwards;
-}
-@keyframes glitch {
-  0% { text-shadow: 0 0 0 transparent; clip-path: none; }
-  20% { text-shadow: -3px 0 var(--cyan), 3px 0 var(--pink); clip-path: inset(20% 0 60% 0); }
-  40% { text-shadow: 3px 0 var(--purple-400), -3px 0 var(--gold); clip-path: inset(60% 0 10% 0); }
+
   60% { text-shadow: -3px 0 var(--cyan); clip-path: inset(40% 0 40% 0); }
   80% { text-shadow: 3px 0 var(--pink); clip-path: inset(0% 0 80% 0); }
   100% { text-shadow: none; clip-path: none; }
@@ -822,7 +816,7 @@ section { padding: 100px 40px; }
 
 .academy-title {
   font-family: 'Outfit', sans-serif; font-weight: 800;
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   line-height: 0.95; letter-spacing: -0.03em;
   margin-bottom: 24px;
 }
@@ -863,7 +857,7 @@ section { padding: 100px 40px; }
 }
 .artist-name {
   font-family: 'Outfit', sans-serif; font-weight: 800;
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   line-height: 1; letter-spacing: -0.03em;
   background: linear-gradient(135deg, var(--purple-200) 0%, var(--purple-400) 50%, var(--cyan) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
@@ -966,7 +960,7 @@ section { padding: 100px 40px; }
 
 .connect-title {
   font-family: 'Outfit', sans-serif; font-weight: 800;
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   line-height: 0.95; letter-spacing: -0.03em;
   margin-bottom: 20px;
 }
@@ -1198,8 +1192,27 @@ footer::before {
   footer { padding: 48px 20px 28px; }
 }
 @media (max-width: 480px) {
-  .hero-title { font-size: clamp(5rem, 22vw, 7rem); }
+  .hero-title { font-size: clamp(3rem, 14vw, 5rem); }
 }
+
+  .menu-group { padding: 0; }
+  .menu-group-toggle {
+    width: 100%; background: none; border: none; cursor: pointer;
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 0.88rem;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75); text-align: left;
+    padding: 10px 14px; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .menu-group-toggle:hover { background: rgba(255,255,255,0.06); color: var(--yellow); }
+  .menu-group-arrow { transition: transform 0.3s; flex-shrink: 0; opacity: 0.4; }
+  .menu-group.open .menu-group-arrow { transform: rotate(180deg); opacity: 0.8; }
+  .menu-group-items { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 14px; }
+  .menu-group.open .menu-group-items { max-height: 200px; }
+  .menu-group-items a { font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; padding: 8px 14px !important; }
+  .menu-group-items a:hover { color: var(--yellow) !important; }
+
 </style>
 </head>
 <body>
@@ -1235,12 +1248,21 @@ footer::before {
   <a href="series.html" onclick="toggleMenu()">Chuby Dice Series</a>
   <a href="clash.html" onclick="toggleMenu()">Clash Inna Dancehall</a>
   <a href="coaching.html" onclick="toggleMenu()">Professional 1:1 Coaching &amp; Programs</a>
-  <a href="academy.html" onclick="toggleMenu()">Dancehall Academy — Launching 2026</a>
+  <a href="academy.html" onclick="toggleMenu()">Dancehall Academy</a>
   <a href="about.html" onclick="toggleMenu()">About Chuby Dice</a>
-  <a href="contact.html" onclick="toggleMenu()">Brand Ambassadorship</a>
   <a href="in-ya-city.html" onclick="toggleMenu()">Chuby Dice in Ya City</a>
-  <a href="past-series.html" onclick="toggleMenu()">2026 Events (Archive)</a>
-  <a href="#connect" onclick="toggleMenu()">Contact / Instagram</a>
+  <div class="menu-divider"></div>
+  <div class="menu-group">
+    <button class="menu-group-toggle" onclick="toggleSubMenu(this)">
+      Dis an Dat
+      <svg class="menu-group-arrow" width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="menu-group-items">
+      <a href="#connect" onclick="toggleMenu()">Contact / Instagram</a>
+      <a href="contact.html" onclick="toggleMenu()">Brand Ambassadorship</a>
+      <a href="past-series.html" onclick="toggleMenu()">Past Events</a>
+    </div>
+  </div>
   <div class="menu-divider"></div>
   <button class="menu-book" onclick="location.href='series.html'">Book a Class</button>
 </div>
@@ -1259,7 +1281,7 @@ footer::before {
   <div class="hero-content">
     <div class="hero-eyebrow">
       <span class="eyebrow-dot"></span>
-      Melbourne's Premier Dancehall Experience
+      Home of Chuby Dice Series &amp; Australia's Dancehall Academy
     </div>
     <h1 class="hero-title">
       <span class="line1">CHUBY</span>
@@ -1382,7 +1404,7 @@ footer::before {
       <div class="tile-inner" style="flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding:36px 36px;">
         <div>
           <span style="display:inline-block;font-family:'Outfit',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);background:rgba(244,114,182,0.08);border:1px solid rgba(244,114,182,0.2);padding:5px 12px;border-radius:50px;margin-bottom:12px;">Bespoke</span>
-          <h3 class="tile-title" style="color:var(--pink);font-size:1.5rem;">PROFESSIONAL 1:1 COACHING</h3>
+          <h3 class="tile-title" style="color:var(--pink);font-size:clamp(1.8rem,4vw,2.8rem);">PROFESSIONAL 1:1 COACHING</h3>
           <p class="tile-meta">From $120 / session · Melbourne or Online</p>
         </div>
         <button class="btn-sm-ghost" onclick="location.href='coaching.html'" style="border-color:rgba(244,114,182,0.3);color:var(--pink);flex-shrink:0;">More Info</button>
@@ -1412,9 +1434,9 @@ footer::before {
         Launching 2026
       </div>
       <h2 class="academy-title">
-        <span class="t1">CHUBY DICE</span>
         <span class="t2">DANCEHALL ACADEMY</span>
       </h2>
+      <p style="font-size:0.9rem;color:rgba(255,255,255,0.5);margin-bottom:16px;">Chuby Dice Dancehall Academy — Out of many, one</p>
       <button class="btn-primary" onclick="location.href='academy.html'">
         Learn More
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M8 3L13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -1429,7 +1451,7 @@ footer::before {
 <section id="artist">
   <div class="artist-inner reveal">
     <div class="section-chip">Meet the Artist</div>
-    <h2 class="artist-name">Meet Chuby Dice</h2>
+    <h2 class="artist-name" style="white-space:nowrap;">Meet Chuby Dice</h2>
     <p class="artist-bio">
       Veteran performer, cultural practitioner. Leading representative of Jamaican Dancehall in Australia.
       From Spanish Town, Jamaica. Widely recognised as a veteran performer and a leading representative of authentic Jamaican
@@ -1651,6 +1673,26 @@ document.addEventListener('click', function(e) {
   if (!v) return;
   v.play().catch(() => {});
   v.addEventListener('stalled', () => { setTimeout(() => { v.load(); v.play().catch(() => {}); }, 2000); });
+})();
+</script>
+
+<script>
+// Drag-to-scroll for series carousel
+(function() {
+  var carousel = document.querySelector('.series-grid');
+  if (!carousel) return;
+  var isDown = false, startX, scrollLeft;
+  carousel.addEventListener('mousedown', function(e) {
+    isDown = true; carousel.classList.add('dragging');
+    startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft;
+    e.preventDefault();
+  });
+  carousel.addEventListener('mouseleave', function() { isDown = false; carousel.classList.remove('dragging'); });
+  carousel.addEventListener('mouseup', function() { isDown = false; carousel.classList.remove('dragging'); });
+  carousel.addEventListener('mousemove', function(e) {
+    if (!isDown) return;
+    carousel.scrollLeft = scrollLeft - (e.pageX - carousel.offsetLeft - startX) * 1.5;
+  });
 })();
 </script>
 </body>

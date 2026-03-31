@@ -214,6 +214,25 @@
     .menu-overlay { top: 56px; width: calc(100vw - 32px); backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(14,14,14,0.97); }
     .corner { display: none; }
   }
+
+  .menu-group { padding: 0; }
+  .menu-group-toggle {
+    width: 100%; background: none; border: none; cursor: pointer;
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 0.88rem;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75); text-align: left;
+    padding: 10px 14px; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .menu-group-toggle:hover { background: rgba(255,255,255,0.06); color: var(--yellow); }
+  .menu-group-arrow { transition: transform 0.3s; flex-shrink: 0; opacity: 0.4; }
+  .menu-group.open .menu-group-arrow { transform: rotate(180deg); opacity: 0.8; }
+  .menu-group-items { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 14px; }
+  .menu-group.open .menu-group-items { max-height: 200px; }
+  .menu-group-items a { font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; padding: 8px 14px !important; }
+  .menu-group-items a:hover { color: var(--yellow) !important; }
+
 </style>
 </head>
 <body>
@@ -240,18 +259,27 @@
   <a href="series.html">Chuby Dice Series</a>
   <a href="clash.html">Clash Inna Dancehall</a>
   <a href="coaching.html">Professional 1:1 Coaching &amp; Programs</a>
-  <a href="academy.html" class="active">Dancehall Academy — Launching 2026</a>
+  <a href="academy.html" class="active">Dancehall Academy</a>
   <a href="about.html">About Chuby Dice</a>
-  <a href="contact.html">Brand Ambassadorship</a>
   <a href="in-ya-city.html">Chuby Dice in Ya City</a>
-  <a href="past-series.html">2026 Events (Archive)</a>
-  <a href="contact.html">Contact / Instagram</a>
+  <div class="menu-divider"></div>
+  <div class="menu-group">
+    <button class="menu-group-toggle" onclick="toggleSubMenu(this)">
+      Dis an Dat
+      <svg class="menu-group-arrow" width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="menu-group-items">
+      <a href="contact.html">Contact / Instagram</a>
+      <a href="contact.html">Brand Ambassadorship</a>
+      <a href="past-series.html">Past Events</a>
+    </div>
+  </div>
   <div class="menu-divider"></div>
   <button class="menu-book" onclick="location.href='series.html'">Book a Class</button>
 </div>
 
 <main style="position:relative;">
-  <img src="images/academy-hero.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.15;pointer-events:none;">
+  <img src="images/academy-hero.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%;z-index:0;opacity:0.15;pointer-events:none;">
   <div class="grid-bg"></div>
   <div class="ghost-text">ACADEMY</div>
   <div class="corner corner-tl"></div>
@@ -268,7 +296,7 @@
     </div>
 
     <p class="eyebrow">Chuby Dice</p>
-    <h1>DANCEHALL <span>ACADEMY</span></h1>
+    <h1 style="white-space:nowrap;">DANCEHALL <span>ACADEMY</span></h1>
     <div class="divider"></div>
 
     <div class="launch-pill">
