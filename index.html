@@ -531,12 +531,10 @@ section { padding: 100px 40px; }
 }
 .series-grid-secondary {
   display: flex;
+  justify-content: center;
   gap: 20px;
   max-width: 1000px;
   margin: 20px auto 0;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
 }
 .series-grid-secondary::-webkit-scrollbar { display: none; }
 
@@ -751,9 +749,13 @@ section { padding: 100px 40px; }
 
 /* Coaching tile */
 .tile-coaching {
-  grid-column: 1 / -1;
+  width: 100%;
+  max-width: 800px;
   border-color: rgba(244,114,182,0.12) !important;
-  min-height: 220px;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .tile-coaching .tile-title-coaching { color: var(--pink); }
 .tile-coaching:hover { border-color: rgba(244,114,182,0.3) !important; box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 40px rgba(244,114,182,0.1); }
@@ -1422,7 +1424,7 @@ footer::before {
     <div class="tile tile-coaching reveal">
       <img class="tile-bg" src="images/coaching-hero.jpg" alt="Professional 1:1 Coaching" loading="lazy" decoding="async">
       <div class="tile-overlay"></div>
-      <div class="tile-inner" style="flex-direction:row;align-items:center;justify-content:space-between;gap:20px;padding:36px 36px;">
+      <div class="tile-inner" style="flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px;padding:36px 36px;">
         <div>
           <span style="display:inline-block;font-family:'Outfit',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink);background:rgba(244,114,182,0.08);border:1px solid rgba(244,114,182,0.2);padding:5px 12px;border-radius:50px;margin-bottom:12px;">Bespoke</span>
           <h3 class="tile-title" style="color:var(--pink);font-size:clamp(1.8rem,4vw,2.8rem);">PROFESSIONAL 1:1 COACHING</h3>
