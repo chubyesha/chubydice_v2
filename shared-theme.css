@@ -61,13 +61,28 @@ h1, h2, h3, h4, h5, h6,
 .nav-logo, .footer-logo,
 .hero-title, .page-hero-title, .section-title,
 .tile-title, .brings-title, .wyw-title,
-.hero-content h1, .hero-content h2, .hero-content h3 {
+.hero-content h1, .hero-content h2, .hero-content h3,
+.section-heading, .booking-card-title,
+.location-label, .location-name,
+.info-pill, .hero-tag,
+.pricing-label, .pricing-title,
+.price-card-classes, .price-card-amount, .price-card-label,
+.price-card-per, .price-card-best-tag,
+.price-option-label, .price-option-amount, .price-option-save,
+.best-value-badge, .full-collection-label, .single-label,
+.middle-section-label, .focus-label,
+.card-presenter, .card-price-highlight {
   font-family: 'Outfit', sans-serif !important;
 }
 
 p, li, a, button, input, textarea, label, small, span,
 .hero-desc, .page-hero-desc, .hero-body p {
   font-family: 'DM Sans', sans-serif;
+}
+
+.menu-overlay a,
+.footer-links a {
+  font-family: 'Outfit', sans-serif !important;
 }
 
 nav {
@@ -95,11 +110,18 @@ nav {
 .menu-book,
 .book-btn,
 .btn-book-class,
+.btn-book-now,
+.btn-book-series,
+.btn-book-primary,
+.btn-book,
+.btn-more,
+.btn-design,
 .btn-stay-updated,
 .btn-primary,
 .btn-outline,
 .btn-sm-yellow,
 .btn-sm-ghost,
+.price-card-btn,
 button,
 [role='button'] {
   font-family: 'Outfit', sans-serif !important;
