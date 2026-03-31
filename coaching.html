@@ -420,9 +420,9 @@
   .menu-group-toggle:hover { background: rgba(255,255,255,0.06); color: var(--yellow); }
   .menu-group-arrow { transition: transform 0.3s; flex-shrink: 0; opacity: 0.4; }
   .menu-group.open .menu-group-arrow { transform: rotate(180deg); opacity: 0.8; }
-  .menu-group-items { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 14px; }
+  .menu-group-items { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 14px; display: flex; flex-direction: column; }
   .menu-group.open .menu-group-items { max-height: 200px; }
-  .menu-group-items a { font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; padding: 8px 14px !important; }
+  .menu-group-items a { display: block; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; padding: 8px 14px !important; }
   .menu-group-items a:hover { color: var(--yellow) !important; }
 
 </style>
@@ -639,6 +639,11 @@
 </footer>
 
 <script>
+  function toggleSubMenu(btn) {
+    var group = btn.parentElement;
+    group.classList.toggle('open');
+  }
+
   function toggleMenu() {
     const overlay = document.getElementById('menuOverlay');
     const btn = document.getElementById('menuBtn');
