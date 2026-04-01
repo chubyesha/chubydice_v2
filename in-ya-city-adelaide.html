@@ -72,16 +72,14 @@
     display: flex; flex-direction: column; justify-content: flex-end;
     padding: 0 80px 80px;
     position: relative; overflow: hidden;
-    background: radial-gradient(ellipse 80% 70% at 70% 40%, #5a0a1a 0%, #2a0008 40%, #0A0A0A 75%);
+    background: #0A0A0A;
   }
 
   /* Photo placeholder — full bleed */
   .hero-photo {
     position: absolute; inset: 0;
     background: #0d0d0d;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-    color: rgba(255,255,255,0.06);
+    overflow: hidden;
   }
 
   /* Gradient overlay — fades bottom to black so text reads */
@@ -364,7 +362,7 @@
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-photo"></div>
+  <div class="hero-photo"><img src="images/adelaide-in-ya-city.jpg" alt="Chuby Dice In Ya City Adelaide" style="width:100%;height:100%;object-fit:cover;object-position:center top;"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1 class="hero-title">CHUBY DICE IN YA CITY – ADELAIDE</h1>
