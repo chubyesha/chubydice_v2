@@ -1,126 +1,170 @@
-# Session Recovery — Chuby Dice Website
+# Session Recovery — Chuby Dice Website V2
 
-**Last Updated:** 2026-03-30
-**Branch:** `feat/release-2a-requirements` (from `docs/session-and-readme-update`)
-**Commits in this session:**
-- `fb0eb88` — feat: implement Release 2A product requirements (15 files, 320+/78-)
-- `c4a7d62` — chore: remove stale .tmp.jpg artifacts and gitignore them
-
----
-
-## What Was Done This Session
-
-### Context
-Client provided a Product Requirement Document (PRD) titled "Release 2A — Web Content & Structure" via `screenshots/Info Architecture - RELEASE 2 08022026.docx`. The latest live site code was fetched from `/pablobbk101-cloud/chubydice` remote (commit `b5cc188`) which had a complete redesign with purple/dark theme, new `shared-theme.css`, new images, and restructured `index.html`.
-
-### 7 Product Requirements Implemented
-
-#### R1: Stripe Collection Pricing on `series.html`
-- **What:** Added a "Collection Packages" pricing section below the series grid
-- **Details:** 5 pricing cards (Single $30, 4 Classes $100, 5 Classes $125, 10 Classes $230, 20 Classes $450 with "Best Value" badge)
-- **Status:** Buttons show "Coming Soon" with `data-stripe` attributes as placeholders. CSS added inline in `<style>` block. Responsive grid: 5 cols desktop, 3 cols tablet, 2 cols mobile.
-- **Pending:** Client needs to create Stripe payment links and provide URLs to replace placeholder buttons.
-
-#### R2: Navigation Standardization (All 16 Pages)
-- **What:** Standardized dropdown menu across every HTML page per PRD structure
-- **Script used:** Python batch script to find `menuOverlay` div and replace nav links in all 16 files
-- **Menu order:** Home, Chuby Dice Series, Clash Inna Dancehall, Professional 1:1 Coaching & Programs, Dancehall Academy, About Chuby Dice, Brand Ambassadorship, Chuby Dice in Ya City, 2026 Events (Archive), Contact / Instagram
-- **Key fix:** index.html was missing "Clash Inna Dancehall" link entirely. Many sub-pages had inconsistent ordering.
-- **Active class:** Each page correctly marks its own link with `class="active"`
-
-#### R3: Hero Images for May & June Series
-- **What:** Replaced placeholder images with correct series flyers
-- **Changes:**
-  - Motherland (May): `photo-1.jpeg` → `motherland-2026.jpeg` (in index.html, series.html, motherland.html)
-  - Dancehall Royalty (June): `photo-2.jpeg` → `dancehall-royalty-2026.jpeg` (in index.html, series.html, dancehall-royalty.html)
-
-#### R4: Coaching Hero Image
-- **Status:** Verified correct. Uses `images/5015f87ce59f.png` on both coaching.html hero and index.html coaching tile. No change needed.
-
-#### R5: Hero Video on Home Page
-- **Status:** Already updated by remote to `videos/hero-bg.mp4` with `images/hero-poster.jpg` as poster. No change needed.
-
-#### R6: Coaching Accordion (`coaching.html`)
-- **What:** Converted 5 static pill accordion items to functional expandable accordion
-- **CSS changes:** Replaced `cursor: default` with `cursor: pointer`, added flex layout for header, added `max-height` transition for body, removed `display: none` from `.acc-arrow` and `.acc-body`
-- **HTML changes:** Added SVG chevron arrows to each header, added descriptive `<div class="acc-body">` content for each of the 5 focus areas
-- **JS added:** Click handler with single-open behavior (clicking one closes others)
-- **Content:** Foundations & movement, Sub-genres & periods, Clash vs party, Choreography & musicality, History & contemporary practice
-
-#### R7: About Biography Accordion (`about.html`)
-- **What:** Converted flat wall-of-text biography into 6 collapsible accordion sections
-- **CSS added:** `.bio-accordion`, `.bio-acc-item`, `.bio-acc-header`, `.bio-acc-arrow`, `.bio-acc-body` styles
-- **HTML:** Restructured `hero-body` div from flat `<p>` tags with bold-line headings into proper accordion structure
-- **First section open by default:** "From Spanish Town, Jamaica" has `class="open"` on load
-- **JS added:** Same toggle pattern as coaching accordion with `.bio-acc-header` selectors
-- **All original text preserved exactly.**
-
-### Bonus: Cleanup
-- Removed stale `images/about-6080.jpg.tmp.jpg` and `images/about-6081.jpg.tmp.jpg` from git
-- Added `*.tmp.jpg` to `.gitignore`
+**Last Updated:** 2026-04-01
+**Active Branches (unpushed):**
+- `feat/wire-stripe-links-all-series` — Stripe payment links wired + archived series
+- `fix/center-dropdown-navigation` — Dropdown menu centered below MENU toggle
+- `fix/unified-font-brand-consistency` — Unified font system across all pages
+- `docs/session-and-readme-update` — README + session docs update (current)
 
 ---
 
-## Code Review & Security Review Results
+## What Was Done This Session (2026-04-01)
 
-### Security Review: APPROVED
-- 0 critical, 0 high issues from our changes
-- Pre-existing medium: chat function lacks input validation, CORS wildcard `*`
+### Task 1: Git Remote Migration
+- **Problem:** Remote origin pointed to `chubyesha/chubydice.git` (V1 repo), causing collision risk with the V1 codebase
+- **Fix:** Changed remote to `git@github.com:chubyesha/chubydice_v2.git`
+- **Status:** Remote updated locally. Not pushed yet (user's responsibility).
 
-### Code Review: Issues Found (All Pre-existing)
-- **CRITICAL (pre-existing):** Broken OG image reference (`chuby-profile-CkJq2sVN.jpg` doesn't exist)
-- **HIGH (pre-existing):** `--border` CSS variable conflict between shared-theme.css and page-local styles
-- **HIGH (pre-existing):** `shared-theme.css` forces body font-family with `!important`
-- **HIGH (pre-existing):** `.tmp.jpg` artifact files — **Fixed by us in `c4a7d62`**
+### Task 2: Stripe Payment Links — `feat/wire-stripe-links-all-series`
+
+**Commits:**
+- `198c1cd` — feat: wire Stripe payment links to series class passes
+- `eba2613` — fix: add noopener,noreferrer to Stripe window.open calls
+
+**What was done:**
+- Parsed client document `documents/Info Architecture - RELEASE 2 STRIPE WORKING NOTES.docx` to extract 5 Stripe payment links
+- **series.html:** Activated 5 class pass buttons — removed `pending` class, replaced "Coming Soon" with "Buy Now", added live `onclick="window.open('https://buy.stripe.com/...')"` handlers
+- **lovers-rock.html:** Archived — replaced Book Now + Stripe link with "Past Series" messaging
+- **full-series.html:** Archived — replaced Book Now + Stripe link with "Past Series" messaging
+- **march-back-in-time.html:** Fixed incorrect Stripe link (was sharing lovers-rock's link) to correct 5-Class Pass URL
+- **Security hardening:** Added `noopener,noreferrer` to all `window.open` Stripe calls
+- **Verified:** praise-flow.html, motherland.html, dancehall-royalty.html already had correct Stripe links
+
+**Stripe Link Mapping (from client document):**
+
+| Pass | Price | Link Suffix |
+|------|-------|-------------|
+| Single Class | $30 | `...5cX4F20b` |
+| 4 Classes | $100 | `...fRB4F20c` |
+| 5 Classes | $125 | `...bBl4F20d` |
+| 10 Classes | $230 | `...cFp4F20e` |
+| 20 Classes | $450 | `...8p94F20f` |
+
+**Archived by client (Stripe links removed):**
+- Feb Lovers' Rock
+- Adelaide — In Ya City (already archived previously)
+- Full Chuby Dice Series (Q1 cohort)
+
+**Review status:** Code review APPROVED, Security review APPROVED (0 critical, 0 high).
 
 ---
 
-## Files Modified (Release 2A)
+### Task 3: Center Dropdown Navigation — `fix/center-dropdown-navigation`
+
+**Commits:**
+- `2c6584f` — fix: center dropdown navigation panel below menu toggle
+- `0639a4b` — fix: add missing mobile width override for series.html dropdown
+
+**Problem:** Dropdown navigation panel was positioned `right: 24px`, visually appearing under the "Book Now" button instead of the "MENU" toggle.
+
+**Fix applied to all 16 HTML files:**
+- Desktop: `right: 24px` → `left: 50%`
+- Transform: added `translateX(-50%)` to both closed and `.open` states
+- Mobile overrides: removed `right: 16px` (centering inherited from base; `width: calc(100vw - 32px)` with `translateX(-50%)` produces 16px margins each side)
+- series.html: added missing mobile `top: 56px; width: calc(100vw - 32px)` override
+
+**Note:** `shared-theme.css` has `right: 16px !important` in its mobile `@media` block (line 332). This does NOT conflict because CSS ignores `right` when both `left` and `width` are set on a `position: fixed` element.
+
+**Review status:** Code review APPROVED. All 5 verification requirements passed across all 16 files.
+
+---
+
+### Task 4: Unified Font Brand Consistency — `fix/unified-font-brand-consistency`
+
+**Commits:**
+- `3cdd3b0` — fix: unify font families across all pages to match brand guide
+- `c32eeca` — fix: add shared-theme.css and Outfit font import to clash.html
+
+**Problem:** Sub-pages used Barlow/Barlow Condensed/Bebas Neue fonts while the brand reference (index.html) uses Outfit/DM Sans. `shared-theme.css` partially fixed this via `!important` but had gaps — 30+ selectors were not covered.
+
+**Fix (shared-theme.css only — single file cascades to all 15 sub-pages):**
+
+Added to heading/title group (`Outfit !important`):
+- `.section-heading`, `.booking-card-title`, `.location-label`, `.location-name`
+- `.info-pill`, `.hero-tag`
+- `.pricing-label`, `.pricing-title`
+- `.price-card-classes`, `.price-card-amount`, `.price-card-label`, `.price-card-per`, `.price-card-best-tag`
+- `.price-option-label`, `.price-option-amount`, `.price-option-save`
+- `.best-value-badge`, `.full-collection-label`, `.single-label`
+- `.middle-section-label`, `.focus-label`
+- `.card-presenter`, `.card-price-highlight`
+
+Added to button group (`Outfit !important`):
+- `.btn-book-now`, `.btn-book-series`, `.btn-book-primary`
+- `.btn-book`, `.btn-more`, `.btn-design`, `.price-card-btn`
+
+New rule added:
+- `.menu-overlay a, .footer-links a { font-family: 'Outfit' !important }` — fixed live render deviation where inline `.menu-overlay a { Barlow }` was overriding the non-!important `a { DM Sans }` rule
+
+**clash.html fix:** Was the only sub-page missing `shared-theme.css` link and Outfit/DM Sans Google Font import. Both added.
+
+**Brand font system (enforced):**
+- **Outfit** — headings, UI components, buttons, labels, badges, pricing, menu links
+- **DM Sans** — body text, paragraphs
+- **Bebas Neue** — hero display on index.html only
+
+**Review status:** Code review APPROVED. All 30 new selectors verified against HTML files. No typos. index.html unaffected (doesn't load shared-theme.css).
+
+---
+
+## Files Modified This Session
 
 | File | Changes |
 |------|---------|
-| `index.html` | Nav menu updated, hero images updated (Motherland, Dancehall Royalty) |
-| `series.html` | Nav menu, hero images, pricing section added (CSS + HTML) |
-| `coaching.html` | Nav menu, accordion CSS rewritten, HTML expanded with content + chevrons, JS added |
-| `about.html` | Nav menu, bio accordion CSS added, biography restructured to 6 accordion sections, JS added |
-| `motherland.html` | Nav menu, hero image updated |
-| `dancehall-royalty.html` | Nav menu, hero image updated |
-| `praise-flow.html` | Nav menu |
-| `clash.html` | Nav menu |
-| `academy.html` | Nav menu |
-| `contact.html` | Nav menu |
-| `in-ya-city.html` | Nav menu |
-| `in-ya-city-adelaide.html` | Nav menu |
-| `past-series.html` | Nav menu |
-| `march-back-in-time.html` | Nav menu |
-| `lovers-rock.html` | Nav menu |
-| `full-series.html` | Nav menu |
-| `.gitignore` | Added `*.tmp.jpg` |
+| `series.html` | Stripe links activated (5 price cards), dropdown centered, mobile override added |
+| `lovers-rock.html` | Archived booking card, dropdown centered |
+| `full-series.html` | Archived booking card, dropdown centered |
+| `march-back-in-time.html` | Stripe link corrected, dropdown centered, noopener added |
+| `shared-theme.css` | 30+ font selectors added, button group expanded, menu/footer link overrides |
+| `clash.html` | Added shared-theme.css + Outfit font import, dropdown centered |
+| `index.html` | Dropdown centered |
+| `about.html` | Dropdown centered |
+| `academy.html` | Dropdown centered |
+| `coaching.html` | Dropdown centered |
+| `contact.html` | Dropdown centered |
+| `dancehall-royalty.html` | Dropdown centered |
+| `in-ya-city.html` | Dropdown centered |
+| `in-ya-city-adelaide.html` | Dropdown centered |
+| `motherland.html` | Dropdown centered |
+| `past-series.html` | Dropdown centered |
+| `praise-flow.html` | Dropdown centered |
+| `README.md` | Updated for V2 with current project state |
 
 ---
 
 ## What Was NOT Changed (Intentionally)
 
-- `shared-theme.css` — Pre-existing issues noted but not in scope
+- **index.html** fonts/styles — It does NOT load `shared-theme.css` and is the brand reference. No font changes made to it.
 - `netlify.toml` — CORS and cache headers are pre-existing concerns
-- `netlify/functions/chat.js` — Input validation not in scope for Release 2A
+- `netlify/functions/chat.js` — Input validation not in scope
 - `chatbot.js` — No changes needed
 - OG image meta tags — Pre-existing broken reference, flagged for future fix
-- Videos — Already updated by remote
+- Inline Barlow `font-family` declarations in sub-pages — Left as dead code (shared-theme !important overrides them). Can be cleaned up in a future refactor.
 
 ---
 
-## Git Branch State
+## Git State
 
 ```
-main ← origin/main
-  └── feat/pablobbk101-cloud-chubydice-changes (b5cc188) ← latest live site code
-       └── feat/release-2a-requirements (c4a7d62) ← Release 2A implementation
-            └── docs/session-and-readme-update ← README + session docs (current)
+Remote: git@github.com:chubyesha/chubydice_v2.git (newly set — NOT pushed yet)
+
+Branch tree (all unpushed):
+main
+  └── feat/wire-stripe-links-all-series (198c1cd, eba2613)
+  └── fix/center-dropdown-navigation (2c6584f, 0639a4b)
+  └── fix/unified-font-brand-consistency (3cdd3b0, c32eeca)
+  └── docs/session-and-readme-update (current)
 ```
+
+**User must push all branches manually.**
 
 ---
 
-## Remotes
+## Pre-existing Issues (Unchanged)
 
-- `origin` → `git@github.com:chubyesha/chubydice.git`
+1. **Broken OG image** — `chuby-profile-CkJq2sVN.jpg` doesn't exist (all 16 pages)
+2. **CORS wildcard** — `Access-Control-Allow-Origin: *` in netlify.toml and chat function
+3. **Chat function** — No input validation or rate limiting
+4. **`--border` CSS variable conflict** — shared-theme.css vs page-local definitions
+5. **shared-theme.css mobile `right: 16px !important`** — Technically conflicts with centered dropdown `left: 50%`, but CSS resolves it correctly (right ignored when left + width both set)
