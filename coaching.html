@@ -83,8 +83,8 @@
   .hero {
     position: relative;
     min-height: 60vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 0 64px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 80px 0 40px;
     overflow: hidden;
     background: url("images/coaching-hero.jpg") center center / cover no-repeat;
   }
@@ -95,7 +95,7 @@
     top: 50%; left: 50%;
     transform: translate(-50%, -52%);
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(10rem, 22vw, 22rem);
+    font-size: clamp(5rem, 14vw, 12rem);
     letter-spacing: 0.02em;
     line-height: 0.85;
     text-align: center;
@@ -103,6 +103,7 @@
     pointer-events: none;
     user-select: none;
     z-index: 0;
+    opacity: 0.5;
   }
   .wm-line1 {
     display: block;
@@ -122,7 +123,7 @@
     position: absolute;
     top: 10%; right: -8%;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(5rem, 14vw, 13rem);
+    font-size: clamp(3rem, 8vw, 7rem);
     letter-spacing: 0.04em;
     transform: rotate(-35deg);
     transform-origin: top right;
@@ -143,11 +144,8 @@
 
   /* Subtitle tags bar */
   .hero-tags {
-    position: absolute;
-    bottom: 46%;
-    left: 0; right: 0;
-    display: flex; justify-content: center; gap: 40px;
-    z-index: 1;
+    display: flex; justify-content: center; gap: 24px;
+    margin-bottom: 12px;
     pointer-events: none;
   }
   .hero-tag {
@@ -162,6 +160,7 @@
   .hero-content {
     position: relative; z-index: 2;
     max-width: 1100px; margin: 0 auto; padding: 0 48px;
+    text-align: center;
   }
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -476,24 +475,22 @@
 <section class="hero" style="position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.4) 0%,rgba(0,0,0,0.65) 100%);z-index:1;pointer-events:none;"></div>
   <!-- Big watermark bg -->
-  <div class="hero-watermark" style="position:relative;z-index:2;">
+  <div class="hero-watermark">
     <span class="wm-line1">CHUBY</span>
     <span class="wm-line2">DICE</span>
   </div>
   <!-- Diagonal coaching watermark -->
-  <div class="hero-coaching-wm" style="position:relative;z-index:2;">COACHING · X1</div>
+  <div class="hero-coaching-wm">COACHING · X1</div>
 
-  <!-- Subtitle tags -->
-  <div class="hero-tags" style="position:relative;z-index:2;">
-    <span class="hero-tag">GLOBAL</span>
-    <span class="hero-tag dim">DANCER</span>
-    <span class="hero-tag dim">TEACHER</span>
-    <span class="hero-tag dim">CULTURAL</span>
-    <span class="hero-tag">PIONEER</span>
-  </div>
-
-  <!-- Bottom content -->
-  <div class="hero-content" style="position:relative;z-index:2;">
+  <!-- Hero content — vertically centered -->
+  <div class="hero-content" style="position:relative;z-index:3;">
+    <div class="hero-tags">
+      <span class="hero-tag">GLOBAL</span>
+      <span class="hero-tag dim">DANCER</span>
+      <span class="hero-tag dim">TEACHER</span>
+      <span class="hero-tag dim">CULTURAL</span>
+      <span class="hero-tag">PIONEER</span>
+    </div>
     <h1 class="hero-title">1:1 COACHING &amp; PROGRAMS<br/>WITH CHUBY</h1>
   </div>
 
