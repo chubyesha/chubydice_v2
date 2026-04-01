@@ -1411,17 +1411,32 @@ footer::before {
     <span class="series-swipe-dot"></span>
   </div>
 
-  <div class="past-link reveal">
+  <div class="past-link reveal" style="display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;">
     <a href="past-series.html">
       Past Sessions
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </a>
+    <a href="series.html#pricing" style="display:inline-flex;align-items:center;gap:8px;font-family:'Outfit',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;border:1px solid rgba(245,197,24,0.3);padding:8px 18px;border-radius:50px;transition:background 0.2s;" onmouseover="this.style.background='rgba(245,197,24,0.08)'" onmouseout="this.style.background='transparent'">
+      Series Collection Pack
+    </a>
   </div>
 
-  <div class="series-grid-secondary">
+  <div class="series-grid-secondary" style="display:flex;flex-direction:column;gap:20px;max-width:960px;margin:20px auto 0;align-items:center;">
+
+    <!-- Clash Inna Dancehall -->
+    <div class="tile tile-clash reveal" style="width:100%;position:relative;overflow:hidden;min-height:280px;">
+      <img class="tile-bg" src="images/clash-inna-dancehall.png" alt="Clash Inna Dancehall" loading="lazy" decoding="async">
+      <div class="tile-overlay"></div>
+      <div class="tile-inner" style="flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:36px 36px;">
+        <span style="display:inline-block;font-family:'Outfit',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);background:rgba(6,214,160,0.08);border:1px solid rgba(6,214,160,0.2);padding:5px 12px;border-radius:50px;margin-bottom:8px;">May 2026</span>
+        <h3 class="tile-title" style="color:var(--cyan);font-size:clamp(1.8rem,4vw,2.8rem);">CLASH INNA DANCEHALL WITH PASSION STUDIO</h3>
+        <p class="tile-meta">Prep for the Academy, with thanks to Passion Studio</p>
+        <button class="btn-sm-ghost" onclick="location.href='clash.html'" style="border-color:rgba(6,214,160,0.3);color:var(--cyan);margin-top:4px;">More Info</button>
+      </div>
+    </div>
 
     <!-- 1:1 Coaching -->
-    <div class="tile tile-coaching reveal">
+    <div class="tile tile-coaching reveal" style="width:100%;">
       <img class="tile-bg" src="images/coaching-hero.jpg" alt="Professional 1:1 Coaching" loading="lazy" decoding="async">
       <div class="tile-overlay"></div>
       <div class="tile-inner" style="flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px;padding:36px 36px;">
@@ -1436,11 +1451,6 @@ footer::before {
 
   </div>
 
-  <div class="past-link reveal">
-    <a href="past-series.html">
-      View Past Sessions
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M8 3L12 7L8 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </a>
   </div>
 </section>
 
@@ -1448,7 +1458,7 @@ footer::before {
 
 <!-- ═══ ACADEMY ═══ -->
 <section id="academy">
-  <div class="academy-tile reveal" style="position:relative;overflow:hidden;">
+  <div class="academy-tile reveal" style="position:relative;overflow:hidden;max-width:960px;margin:0 auto;">
     <img src="images/academy-tile-bg.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.3;" loading="lazy">
     <div class="academy-ghost">ACADEMY</div>
     <div class="academy-inner">
