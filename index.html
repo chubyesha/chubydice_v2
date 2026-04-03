@@ -1217,6 +1217,50 @@ footer::before {
   .hero-title { font-size: clamp(3rem, 14vw, 5rem); }
 }
 
+
+  /* ─── ENHANCED MOBILE UX (page) ─── */
+  @media (max-width: 640px) {
+    .nav-logo { font-size: 1.4rem; }
+    /* Reduce orb sizes to prevent horizontal overflow on mobile */
+    .orb-1 { width: 350px; height: 350px; }
+    .orb-2 { width: 250px; height: 250px; }
+    .orb-3 { width: 200px; height: 200px; }
+  }
+
+
+  /* ─── INDEX MOBILE SPECIFICS ─── */
+  @media (max-width: 480px) {
+    #hero { padding: 100px 12px 48px; }
+    .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.2em; }
+    .hero-desc { font-size: 0.9rem; }
+    .hero-actions { flex-direction: column; align-items: center; gap: 12px; }
+    .hero-actions button, .hero-actions a { width: 100%; max-width: 300px; min-height: 44px; }
+    .series-grid .tile { flex: 0 0 min(88vw, 300px); min-height: 280px; }
+    .tile-inner { padding: 20px 14px; }
+    .tile-title { font-size: 1.3rem; }
+    .tile-desc { font-size: 0.8rem; }
+    .tile-clash .tile-inner,
+    .tile-single .tile-inner { flex-direction: column; align-items: flex-start; padding: 24px 14px; }
+    .tile-full-right, .tile-featured-right, .tile-inner-right { width: 100%; }
+    .btn-sm-yellow, .btn-sm-ghost { padding: 10px 16px; font-size: 0.75rem; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+    .section-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+    .academy-tile { padding: 40px 14px; }
+    .playlist-card { padding: 28px 16px; }
+    .connect-title { font-size: clamp(2.5rem, 9vw, 4rem); }
+    .insta-card { padding: 24px 16px; }
+    .btn-insta { padding: 12px 24px; font-size: 0.82rem; min-height: 44px; }
+    .btn-primary { padding: 14px 24px; font-size: 0.9rem; min-height: 44px; }
+    .btn-outline { padding: 12px 24px; font-size: 0.9rem; min-height: 44px; }
+    .artist-bio { font-size: 0.92rem; }
+    section { padding: 48px 12px; }
+  }
+  @media (max-width: 360px) {
+    #hero { padding: 90px 10px 40px; }
+    .series-grid .tile { min-height: 260px; }
+    .tile-clash .tile-inner,
+    .tile-single .tile-inner { padding: 20px 12px; }
+  }
+
   .menu-group { padding: 0; }
   .menu-group-toggle {
     width: 100%; background: none; border: none; cursor: pointer;

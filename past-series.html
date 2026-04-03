@@ -355,6 +355,21 @@
     .menu-overlay { top: 56px; width: calc(100vw - 32px); backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(14,14,14,0.97); }
   }
 
+
+  /* ─── ENHANCED MOBILE UX (page) ─── */
+  @media (max-width: 640px) {
+    .nav-logo { font-size: 1.4rem; }
+  }
+
+
+  /* ─── PAST SERIES MOBILE SPECIFICS ─── */
+  @media (max-width: 480px) {
+    .past-grid { grid-template-columns: 1fr; gap: 16px; }
+    .past-card { min-height: 280px; }
+    .past-card-content h3 { font-size: 1.3rem; }
+    .past-card-content p { font-size: 0.8rem; }
+  }
+
   .menu-group { padding: 0; }
   .menu-group-toggle {
     width: 100%; background: none; border: none; cursor: pointer;
