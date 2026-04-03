@@ -345,6 +345,26 @@
     .menu-overlay { top: 56px; width: calc(100vw - 32px); backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(14,14,14,0.97); }
   }
 
+
+  /* Nav-logo sizing handled by shared-theme.css */
+
+
+  /* ─── SUB-PAGE MOBILE SPECIFICS ─── */
+  @media (max-width: 480px) {
+    .hero { min-height: 50vh; padding-left: 12px; padding-right: 12px; }
+    .body-section { padding: 40px 12px 60px; }
+    .booking-card { padding: 24px 16px; margin: 0 8px; }
+    .booking-card h3 { font-size: 1.3rem; }
+    .price-option { padding: 14px; min-height: 48px; }
+    .price-option label { font-size: 0.85rem; min-height: 44px; display: flex; align-items: center; }
+    .info-strip { flex-direction: column; gap: 8px; text-align: center; }
+    .location-section { padding: 40px 12px; }
+  }
+  @media (max-width: 360px) {
+    .hero { min-height: 45vh; }
+    .booking-card { margin: 0 4px; }
+  }
+
   .menu-group { padding: 0; }
   .menu-group-toggle {
     width: 100%; background: none; border: none; cursor: pointer;

@@ -344,14 +344,47 @@ a {
   transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
 }
 
+/* ─── ENHANCED MOBILE UX ─── */
 @media (max-width: 768px) {
   nav {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
-
   .menu-overlay {
     right: 16px !important;
     width: min(320px, calc(100vw - 32px)) !important;
   }
+  /* Tap-friendly touch targets (WCAG 2.5.5 min 44px) */
+  .menu-overlay a { padding: 12px 14px; min-height: 44px; display: flex !important; align-items: center; }
+  .menu-group-toggle { padding: 12px 14px; min-height: 44px; display: flex !important; }
+  .menu-group-items a { padding: 10px 14px !important; min-height: 44px; display: flex !important; align-items: center; }
+  .menu-book { padding: 14px; min-height: 44px; font-size: 0.9rem; }
+  .book-btn { padding: 12px 24px; min-height: 44px; font-size: 0.85rem; }
+  .social-icon { width: 44px; height: 44px; }
+  /* Nav logo responsive */
+  .nav-logo { font-size: 1.4rem !important; }
+  /* Footer mobile */
+  footer { padding: 40px 16px 24px !important; }
+  .footer-top { flex-direction: column; gap: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+  .footer-bottom-links { justify-content: center; }
+}
+
+@media (max-width: 480px) {
+  nav { padding: 12px 14px !important; }
+  .nav-logo { font-size: 1.2rem !important; }
+  .menu-overlay { width: calc(100vw - 20px) !important; padding: 10px; }
+  .menu-overlay a { font-size: 0.82rem; padding: 11px 12px; }
+  .menu-group-toggle { font-size: 0.82rem; padding: 11px 12px; }
+  footer { padding: 32px 12px 20px !important; }
+  .footer-logo { font-size: 1.6rem !important; }
+  .footer-tagline { font-size: 0.8rem; }
+  .footer-links a { font-size: 0.82rem; }
+  .footer-bottom p { font-size: 0.7rem; }
+}
+
+@media (max-width: 360px) {
+  nav { padding: 10px 10px !important; }
+  .nav-logo { font-size: 1.1rem !important; }
+  .menu-overlay { width: calc(100vw - 12px) !important; }
 }
