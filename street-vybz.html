@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Chuby Dice"/>
+<meta property="og:title" content="Street Vybz | Chuby Dice Series"/>
+<meta property="og:description" content="Street Vybz — a new Chuby Dice Series module coming July 2026."/>
+<meta property="og:url" content="https://graceful-cascaron-d11800.netlify.app/street-vybz.html"/>
+<meta property="og:image" content="https://graceful-cascaron-d11800.netlify.app/chuby-profile-CkJq2sVN.jpg"/>
+<meta property="og:image:width" content="898"/>
+<meta property="og:image:height" content="1600"/>
+<meta property="og:image:alt" content="Chuby Dice — Dancehall Artist"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Street Vybz | Chuby Dice Series"/>
+<meta name="twitter:description" content="Street Vybz — a new Chuby Dice Series module coming July 2026."/>
+<meta name="twitter:image" content="https://graceful-cascaron-d11800.netlify.app/chuby-profile-CkJq2sVN.jpg"/>
+<title>Street Vybz | Chuby Dice Series</title>
+<link rel="icon" type="image/x-icon" href="images/09c9ec4a0ce4.ico"/>
+<link rel="icon" type="image/png" sizes="32x32" href="images/8cbe784dd268.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="images/8cbe784dd268.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet"/></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="shared-theme.css"/>
+<style>
+  :root {
+    --yellow: #F5C518;
+    --white: #FFFFFF;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --border: #242424;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  * { -webkit-tap-highlight-color: transparent; }
+  button, a, [onclick] { touch-action: manipulation; }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  body { font-family: 'Barlow', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+  /* ─── NAVBAR ─── */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 18px 36px; background: rgba(10,10,10,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.05em; color: var(--white); text-decoration: none; justify-self: start; }
+  .nav-logo span { color: var(--yellow); }
+  .nav-center { display: flex; justify-content: center; }
+  .nav-right { display: flex; align-items: center; justify-content: flex-end; }
+  .menu-btn { background: none; border: none; color: var(--white); font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.1em; cursor: pointer; display: flex; align-items: center; gap: 6px; text-transform: uppercase; }
+  .menu-btn svg { transition: transform 0.3s; }
+  .menu-btn.open svg { transform: rotate(180deg); }
+  .book-btn { background: var(--yellow); color: var(--black); border: none; font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 0.9rem; padding: 10px 22px; border-radius: 50px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; transition: transform 0.2s, box-shadow 0.2s; }
+  .book-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245,197,24,0.4); }
+
+  /* ─── DROPDOWN ─── */
+  .menu-overlay { position: fixed; top: 64px; left: 50%; width: 300px; background: rgba(14,14,14,0.82); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; z-index: 999; display: flex; flex-direction: column; padding: 12px; transform: translateX(-50%) translateY(-10px) scale(0.97); opacity: 0; pointer-events: none; transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease; box-shadow: 0 24px 60px rgba(0,0,0,0.6); }
+  .menu-overlay.open { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; pointer-events: all; }
+  .menu-overlay a { font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 0.88rem; letter-spacing: 0.04em; text-transform: uppercase; color: rgba(255,255,255,0.75); text-decoration: none; padding: 10px 14px; border-radius: 8px; transition: background 0.15s, color 0.15s; }
+  .menu-overlay a:hover { background: rgba(255,255,255,0.06); color: var(--yellow); }
+  .menu-overlay a.active { color: var(--yellow); }
+  .menu-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 8px 0; }
+  .menu-book { background: var(--yellow); color: var(--black); border: none; font-family: 'Barlow', sans-serif; font-weight: 800; font-size: 0.85rem; padding: 12px; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em; width: 100%; transition: transform 0.15s; }
+  .menu-book:hover { transform: scale(1.02); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 80px 80px;
+    position: relative; overflow: hidden;
+    background: radial-gradient(ellipse 80% 70% at 70% 40%, #2d1a4e 0%, #1a0e2e 40%, #0A0A0A, #0A0A0A 75%);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.92) 85%, #0A0A0A 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 680px;
+  }
+  .hero-title {
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 900;
+    line-height: 1; letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 16px;
+    opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+  }
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    max-width: 540px;
+    opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+  }
+
+  /* ─── INFO STRIP ─── */
+  .info-strip {
+    background: rgba(255,255,255,0.03);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 80px;
+    display: flex; gap: 32px; align-items: center;
+  }
+  .info-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px; padding: 8px 16px;
+    font-size: 0.85rem; font-weight: 600; color: rgba(255,255,255,0.7);
+  }
+  .info-pill svg { color: rgba(255,255,255,0.4); }
+  .info-pill.coming-soon { color: var(--yellow); border-color: rgba(245,197,24,0.2); background: rgba(245,197,24,0.05); }
+
+  /* ─── BODY SECTION ─── */
+  .body-section {
+    background: linear-gradient(180deg, #0A0A0A 0%, #1a1508 30%, #2a2010 55%, #141008 75%, #0A0A0A 100%);
+    padding: 80px 80px 100px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 60px;
+    align-items: start;
+  }
+  .section-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem; letter-spacing: 0.06em;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+  .section-heading span { color: var(--yellow); }
+  .body-text {
+    font-size: 0.97rem; line-height: 1.8;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 20px;
+  }
+
+  .learn-list {
+    list-style: none;
+    margin-top: 28px;
+  }
+  .learn-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.95rem; line-height: 1.6;
+    color: rgba(255,255,255,0.65);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .learn-list li:last-child { border-bottom: none; }
+  .learn-list li::before {
+    content: '•';
+    color: var(--yellow);
+    font-size: 1.2rem;
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+
+  /* Right booking card */
+  .booking-card {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 36px 32px;
+    position: sticky; top: 96px;
+  }
+  .booking-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+  .booking-card-title span { color: var(--yellow); }
+  .booking-card p {
+    font-size: 0.9rem; line-height: 1.7;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 28px;
+  }
+  .btn-coming-soon {
+    display: block; width: 100%;
+    background: rgba(245,197,24,0.15); color: var(--yellow);
+    border: 1px solid rgba(245,197,24,0.25); border-radius: 8px;
+    font-family: 'Barlow', sans-serif; font-weight: 900;
+    font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 16px; cursor: default; text-align: center;
+    margin-bottom: 12px;
+  }
+
+  /* ─── PRICING SELECTOR ─── */
+  .pricing-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .price-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: transparent;
+    position: relative;
+  }
+  .price-option:hover {
+    border-color: rgba(245,197,24,0.25);
+    background: rgba(245,197,24,0.03);
+  }
+  .price-option.selected {
+    border-color: var(--yellow);
+    background: rgba(245,197,24,0.06);
+  }
+  .price-option-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .price-radio {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+  }
+  .price-option.selected .price-radio {
+    border-color: var(--yellow);
+  }
+  .price-radio-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--yellow);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .price-option.selected .price-radio-dot {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .price-option-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+  }
+  .price-option.selected .price-option-label {
+    color: var(--white);
+  }
+  .price-option-amount {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--yellow);
+  }
+  .price-option-save {
+    position: absolute;
+    top: -8px; right: 12px;
+    background: var(--yellow);
+    color: var(--black);
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .btn-book-now {
+    display: block; width: 100%;
+    background: var(--yellow); color: var(--black);
+    border: none; border-radius: 8px;
+    font-family: 'Barlow', sans-serif; font-weight: 900;
+    font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 16px; cursor: pointer; text-align: center;
+    margin-bottom: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-book-now:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,197,24,0.35); }
+  .btn-book-series {
+    display: block; width: 100%;
+    background: transparent; color: var(--yellow);
+    border: 1px solid rgba(245,197,24,0.3); border-radius: 8px;
+    font-family: 'Barlow', sans-serif; font-weight: 900;
+    font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 16px; cursor: pointer; text-align: center;
+    margin-bottom: 20px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-book-series:hover { background: rgba(245,197,24,0.06); border-color: rgba(245,197,24,0.5); }
+  .price-note {
+    text-align: center;
+    font-size: 0.85rem; font-weight: 700;
+    color: rgba(255,255,255,0.3);
+  }
+  .price-note strong { color: var(--yellow); }
+
+  /* ─── LOCATION ─── */
+  .location-section {
+    border-top: 1px solid var(--border);
+    padding: 60px 80px;
+    text-align: center;
+    background: var(--black);
+  }
+  .location-label {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 20px;
+  }
+  .location-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem; letter-spacing: 0.06em;
+    color: var(--yellow);
+    margin-bottom: 8px;
+  }
+  .location-address {
+    font-size: 0.95rem; font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.8;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 960px) {
+    .body-section { grid-template-columns: 1fr; padding: 60px 32px 80px; }
+    .booking-card { position: static; }
+    .hero { padding: 0 32px 60px; }
+    .info-strip { padding: 16px 32px; flex-wrap: wrap; gap: 12px; }
+    .location-section { padding: 60px 32px; }
+  }
+  @media (max-width: 640px) {
+    section, .hero, .body-section, .location-section, .info-strip { padding-left: 16px !important; padding-right: 16px !important; }
+    .booking-card { margin: 0 16px; }
+    nav { grid-template-columns: 1fr auto; padding: 14px 20px; backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(10,10,10,0.96); }
+    .nav-center { display: none; }
+    #navBookBtn { display: none; }
+    #menuBtnMobile { display: flex !important; }
+    .menu-overlay { top: 56px; width: calc(100vw - 32px); backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(14,14,14,0.97); }
+  }
+
+
+  /* Nav-logo sizing handled by shared-theme.css */
+
+
+  /* ─── SUB-PAGE MOBILE SPECIFICS ─── */
+  @media (max-width: 480px) {
+    .hero { min-height: 50vh; padding-left: 12px; padding-right: 12px; }
+    .body-section { padding: 40px 12px 60px; }
+    .booking-card { padding: 24px 16px; margin: 0 8px; }
+    .booking-card h3 { font-size: 1.3rem; }
+    .price-option { padding: 14px; min-height: 48px; }
+    .price-option label { font-size: 0.85rem; min-height: 44px; display: flex; align-items: center; }
+    .info-strip { flex-direction: column; gap: 8px; text-align: center; }
+    .location-section { padding: 40px 12px; }
+  }
+  @media (max-width: 360px) {
+    .hero { min-height: 45vh; }
+    .booking-card { margin: 0 4px; }
+  }
+
+  .menu-group { padding: 0; }
+  .menu-group-toggle {
+    width: 100%; background: none; border: none; cursor: pointer;
+    font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 0.88rem;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75); text-align: left;
+    padding: 10px 14px; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .menu-group-toggle:hover { background: rgba(255,255,255,0.06); color: var(--yellow); }
+  .menu-group-arrow { transition: transform 0.3s; flex-shrink: 0; opacity: 0.4; }
+  .menu-group.open .menu-group-arrow { transform: rotate(180deg); opacity: 0.8; }
+  .menu-group-items { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding-left: 14px; display: flex; flex-direction: column; }
+  .menu-group.open .menu-group-items { max-height: 200px; }
+  .menu-group-items a { display: block; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; padding: 8px 14px !important; }
+  .menu-group-items a:hover { color: var(--yellow) !important; }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">CHUBY <span>DICE</span></a>
+  <div class="nav-center">
+    <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+      MENU
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="nav-right">
+    <button class="menu-btn" id="menuBtnMobile" onclick="toggleMenu()" style="display:none;">
+      MENU
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <button class="book-btn" id="navBookBtn" onclick="location.href='series.html'">Book Now</button>
+  </div>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay">
+  <a href="index.html">Home</a>
+  <a href="series.html" class="active">Chuby Dice Series</a>
+  <a href="clash.html">Clash Inna Dancehall</a>
+  <a href="coaching.html">Professional 1:1 Coaching &amp; Programs</a>
+  <a href="academy.html">Dancehall Academy</a>
+  <a href="about.html">About Chuby Dice</a>
+  <a href="in-ya-city.html">Chuby Dice in Ya City</a>
+  <div class="menu-divider"></div>
+  <div class="menu-group">
+    <button class="menu-group-toggle" onclick="toggleSubMenu(this)">
+      Dis an Dat
+      <svg class="menu-group-arrow" width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="menu-group-items">
+      <a href="contact.html">Contact / Instagram</a>
+      <a href="contact.html">Brand Ambassadorship</a>
+      <a href="past-series.html">Past Events</a>
+    </div>
+  </div>
+  <div class="menu-divider"></div>
+  <button class="menu-book" onclick="location.href='series.html'">Book a Class</button>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div style="position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;"><span style="font-family:'Outfit',sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.1);letter-spacing:0.1em;">Image placeholder — Esha to provide</span></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">STREET VYBZ</h1>
+    <p class="hero-desc">Details coming soon — Esha to provide copy for Street Vybz series.</p>
+  </div>
+</section>
+
+<!-- ─── INFO STRIP ─── -->
+<div class="info-strip">
+  <div class="info-pill">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    July 2026
+  </div>
+  <div class="info-pill">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    Tuesdays · 7:30–8:30pm
+  </div>
+  <div class="info-pill coming-soon">
+    From $30
+  </div>
+</div>
+
+<!-- ─── BODY ─── -->
+<section class="body-section">
+
+  <div class="content-left">
+    <h2 class="section-heading">WHAT YOU'LL <span>LEARN</span></h2>
+
+    <p class="body-text">Write-up coming soon — Esha to provide detailed copy for Street Vybz.</p>
+
+    <p class="body-text" style="margin-bottom: 4px;">In this Series, you'll cover:</p>
+    <ul class="learn-list">
+      <li>Movement vocabulary — TBC</li>
+      <li>Cultural context — TBC</li>
+      <li>Musicality and selections — TBC</li>
+      <li>Freestyle and expression — TBC</li>
+    </ul>
+  </div>
+
+  <!-- Booking card -->
+  <div class="booking-card">
+    <div class="booking-card-title">READY TO <span>TRAIN?</span></div>
+    <p>Choose your pass for Street Vybz — coming July 2026.</p>
+
+    <div class="pricing-options" id="pricingOptions">
+      <div class="price-option selected" data-price="30" data-display-price="A$30.00" data-label="Single Class" data-link="#STRIPE_PLACEHOLDER" onclick="selectPrice(this)">
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">Single Class</span>
+        </div>
+        <span class="price-option-amount">A$30.00</span>
+      </div>
+      <div class="price-option" data-price="100" data-display-price="A$100.00" data-label="4 Classes" data-link="#STRIPE_PLACEHOLDER" onclick="selectPrice(this)">
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">4 Classes</span>
+        </div>
+        <span class="price-option-amount">A$100.00</span>
+      </div>
+      <div class="price-option" data-price="125" data-display-price="A$125.00" data-label="5 Classes" data-link="#STRIPE_PLACEHOLDER" onclick="selectPrice(this)">
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">5 Classes</span>
+        </div>
+        <span class="price-option-amount">A$125.00</span>
+      </div>
+      <div class="price-option" data-price="230" data-display-price="A$230.00" data-label="10 Classes" data-link="#STRIPE_PLACEHOLDER" onclick="selectPrice(this)">
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">10 Classes</span>
+        </div>
+        <span class="price-option-amount">A$230.00</span>
+      </div>
+      <div class="price-option" data-price="450" data-display-price="A$450.00" data-label="20 Classes" data-link="#STRIPE_PLACEHOLDER" onclick="selectPrice(this)">
+        <div class="price-option-left">
+          <div class="price-radio"><div class="price-radio-dot"></div></div>
+          <span class="price-option-label">20 Classes</span>
+        </div>
+        <span class="price-option-amount">A$450.00</span>
+      </div>
+    </div>
+
+    <button class="btn-book-now" id="bookBtn" onclick="openSelectedPrice()">Book Now — A$30.00</button>
+    <button class="btn-book-series" onclick="location.href='series.html'">View All Series</button>
+  </div>
+
+</section>
+
+<!-- ─── LOCATION ─── -->
+<a href="https://maps.app.goo.gl/KFathEk6HmMajmHH7" target="_blank" rel="noopener" style="text-decoration:none;display:block;">
+<div class="location-section" style="cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+  <div class="location-label">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Studio Location
+  </div>
+  <div class="location-name">HD Entertainment</div>
+  <p class="location-address">Level 2 &amp; 3, 34 King Street<br/>Enter Via, Mount St, Prahran VIC 3181, Australia</p>
+</div>
+</a>
+
+<script>
+  function toggleSubMenu(btn) {
+    var group = btn.parentElement;
+    group.classList.toggle('open');
+  }
+
+  function toggleMenu() {
+    const overlay = document.getElementById('menuOverlay');
+    const btn = document.getElementById('menuBtn');
+    const btnM = document.getElementById('menuBtnMobile');
+    overlay.classList.toggle('open');
+    btn.classList.toggle('open');
+    btnM.classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const overlay = document.getElementById('menuOverlay');
+    const btn = document.getElementById('menuBtn');
+    const btnM = document.getElementById('menuBtnMobile');
+    if (overlay && overlay.classList.contains('open') &&
+        !overlay.contains(e.target) && !btn.contains(e.target) && (!btnM || !btnM.contains(e.target))) {
+      overlay.classList.remove('open');
+      btn.classList.remove('open');
+      if (btnM) btnM.classList.remove('open');
+    }
+  });
+</script>
+<script>
+function openSelectedPrice() {
+  var btn = document.getElementById('bookBtn');
+  var link = btn && btn.getAttribute('data-link');
+  if (link) window.open(link, '_blank');
+}
+
+function selectPrice(el) {
+  document.querySelectorAll('.price-option').forEach(function(opt) {
+    opt.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  var price = el.getAttribute('data-display-price') || ('A$' + el.getAttribute('data-price') + '.00');
+  var link = el.getAttribute('data-link');
+  var btn = document.getElementById('bookBtn');
+  if (btn) {
+    btn.textContent = 'Book Now — ' + price;
+    btn.setAttribute('data-link', link || '');
+  }
+}
+selectPrice(document.querySelector('.price-option.selected'));
+</script>
+
+<!-- BBK PRODUCTIONS CREDIT -->
+<footer style="background:#111111;border-top:1px solid #2A2A2A;padding:20px;text-align:center;">
+  <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Site made and managed by BBK Productions</p>
+</footer>
+</body>
+</html>
