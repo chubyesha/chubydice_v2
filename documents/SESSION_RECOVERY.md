@@ -1,11 +1,13 @@
 # Session Recovery — Chuby Dice Website V2
 
-**Last Updated:** 2026-04-01
+**Last Updated:** 2026-04-03
 **Active Branches (unpushed):**
 - `feat/wire-stripe-links-all-series` — Stripe payment links wired + archived series
 - `fix/center-dropdown-navigation` — Dropdown menu centered below MENU toggle
 - `fix/unified-font-brand-consistency` — Unified font system across all pages
-- `docs/session-and-readme-update` — README + session docs update (current)
+- `docs/session-and-readme-update` — README + session docs update
+- `fix/footer-bbk-to-hd-entertainment` — Footer credit updated to HD Entertainment
+- `feat/release-2b-shell-templates` — Release 2B shell templates (current)
 
 ---
 
@@ -161,6 +163,65 @@ main
 
 ---
 
+---
+
+## Session 2 (2026-04-03) — Release 2B Shell Templates
+
+### Task 5: Footer Credit Update — `fix/footer-bbk-to-hd-entertainment`
+- **Commit:** `5ac3bf0`
+- Updated "Site made and managed by BBK Productions" to "HD Entertainment" across 16 HTML files + README.md (17 occurrences)
+
+### Task 6: Release 2B Shell Templates — `feat/release-2b-shell-templates`
+- **Commit:** `6c20da9`
+- **Source Document:** `screenshots/Info Architecture - RELEASE 2 B.docx`
+- **Deadline:** Draft by 4 April 2026, deploy by 6 April 2026
+
+**What was done (7 files modified, 375 insertions, 52 deletions):**
+
+**index.html:**
+- Removed March Back in Time carousel tile (archived)
+- Added 4 new series shell tiles: STREET VYBZ (Jul), SPAIN TOWN BADNESS (Aug), HOT STEPPAZ (Sep), BORN AGEN (Oct)
+- Updated swipe indicator dots from 4 to 7
+- Added 2 new Clash tiles: LITEFEET V DANCEHALL (May), KRUMP V DANCEHALL (Jul)
+- Added "Book Coaching" button to coaching tile
+- Added Acknowledgment of Country section before footer
+- Fixed inline padding overriding mobile CSS on tile-inner divs
+
+**series.html:**
+- Removed March Back in Time card from series grid
+- Added 4 new series cards with shell placeholders
+- Fixed stale og:description and twitter:description meta tags
+
+**march-back-in-time.html:**
+- Archived booking card: "READY TO TRAIN?" → "PAST SERIES" (matching lovers-rock pattern)
+
+**clash.html:**
+- Added Litefeet v Dancehall (May) section with image placeholder, write-up placeholder, Stripe placeholder button
+- Added Krump v Dancehall (Jul) section with same structure
+
+**academy.html:**
+- Added 4 new sections: AUDITIONS (13 Jun 2026), SCHOLARSHIPS (2026-2027), CURRICULUM (2026-2027), VISION 2030
+- All sections use academy yellow accent color scheme
+
+**coaching.html:**
+- Added coaching pricing cards section (Single $120, 4-Pack TBC, Custom TBC)
+- All Stripe buttons use `#STRIPE_PLACEHOLDER`
+- Fixed noopener/noreferrer on existing Stripe button
+
+**about.html:**
+- Added Brand Ambassadorship section under "Dis an Dat" label
+
+**Review status:** Code review APPROVED — 0 critical, 0 high, 4 medium (all fixed).
+
+**Shell Template Pattern:**
+- All new elements use gradient background divs instead of images (e.g., `background:linear-gradient(135deg,#1e0a3c 0%,#3b1a78 50%,#110e1f 100%)`)
+- "Shell — Image TBC" badge on each placeholder element
+- Placeholder text: "Details coming soon — Esha to provide copy."
+- Stripe buttons use `#STRIPE_PLACEHOLDER` as onclick target
+- Esha to provide images + text copy on 3-4 April 2026
+
+---
+
 ## Pre-existing Issues (Unchanged)
 
 1. **Broken OG image** — `chuby-profile-CkJq2sVN.jpg` doesn't exist (all 16 pages)
@@ -168,3 +229,5 @@ main
 3. **Chat function** — No input validation or rate limiting
 4. **`--border` CSS variable conflict** — shared-theme.css vs page-local definitions
 5. **shared-theme.css mobile `right: 16px !important`** — Technically conflicts with centered dropdown `left: 50%`, but CSS resolves it correctly (right ignored when left + width both set)
+6. **Brand Ambassadorship nav link** — Still points to `contact.html`, should update to `about.html#brand-ambassadorship`
+7. **series.html hero description** — Still references "Q1 2026", should update to cover Q2-Q4 2026

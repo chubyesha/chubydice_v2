@@ -24,12 +24,12 @@
 - **Tech:** Static HTML (no build tools), inline CSS/JS per page, `shared-theme.css` for design system, Netlify Functions for chatbot
 - **Design:** Purple/dark theme with Outfit + DM Sans fonts, CSS custom properties for tokens
 
-## What Was Completed (as of 2026-04-01)
+## What Was Completed
 
-### Release 2A (Previous Sessions)
+### Release 2A (Previous Sessions — 2026-04-01)
 All 7 product requirements from the PRD implemented on `feat/release-2a-requirements`.
 
-### Current Session — 4 Branches (All Unpushed)
+### Session 1 (2026-04-01) — 4 Branches (All Unpushed)
 
 #### 1. `feat/wire-stripe-links-all-series`
 - 5 Stripe payment links wired to series.html class pass buttons (now live "Buy Now")
@@ -53,27 +53,49 @@ All 7 product requirements from the PRD implemented on `feat/release-2a-requirem
 - README.md updated for V2 with current project state
 - SESSION_RECOVERY.md and RESUME_INSTRUCTIONS.md updated
 
+### Session 2 (2026-04-03) — 2 Branches (All Unpushed)
+
+#### 5. `fix/footer-bbk-to-hd-entertainment`
+- Updated footer credit from "BBK Productions" to "HD Entertainment" across 17 files
+
+#### 6. `feat/release-2b-shell-templates` (CURRENT)
+- **Source:** `screenshots/Info Architecture - RELEASE 2 B.docx`
+- **Deadline:** Draft by 4 April 2026, deploy by 6 April 2026
+- Added 4 new series shell tiles to index.html and series.html (Street Vybz, Spain Town Badness, Hot Steppaz, Born Agen)
+- Archived March Back in Time (removed from carousel/grid, archived booking card)
+- Added 2 new Clash tiles: Litefeet v Dancehall (May), Krump v Dancehall (Jul)
+- Added Acknowledgment of Country section to index.html
+- Added 4 Academy sections: Auditions, Scholarships, Curriculum, Vision 2030
+- Added coaching pricing cards with Stripe placeholders
+- Added Brand Ambassadorship section to about.html
+- All elements are SHELL TEMPLATES — Esha to provide images + text copy
+
 ## What Still Needs To Be Done
 
-### Immediate Priority
+### Immediate Priority (Release 2B — by 6 April 2026)
 - **Push all branches** to new remote (`chubyesha/chubydice_v2.git`) — user's responsibility
 - **Merge branches** to main (or create PRs) — user's responsibility
+- **Esha to provide:** Images + text copy for all 4 new series, 2 clash events, academy sections, brand ambassadorship
+- **Replace shell placeholders** with actual content once Esha provides assets
+- **Wire live Stripe links** for clash events and coaching packages (replace `#STRIPE_PLACEHOLDER`)
 - **Verify Stripe links work** in production after deploy
 - **Test dropdown centering** across browsers and mobile devices
+- **Update Brand Ambassadorship nav link** from `contact.html` to `about.html#brand-ambassadorship`
 
 ### Pre-existing Issues to Fix
-- **Broken OG image:** All 16 pages reference `chuby-profile-CkJq2sVN.jpg` which doesn't exist. Update all `og:image` and `twitter:image` meta tags.
-- **CORS wildcard:** `netlify.toml` and `netlify/functions/chat.js` use `Access-Control-Allow-Origin: *`. Restrict to actual domain.
-- **Chat function input validation:** Add message length/count limits to `netlify/functions/chat.js`.
-- **`--border` CSS variable conflict:** shared-theme.css (`rgba(255,255,255,0.08)`) vs page-local definitions (`#242424`).
-- **Security headers:** Add `X-Frame-Options`, `Content-Security-Policy`, `Referrer-Policy` to `netlify.toml`.
-- **Dead inline Barlow declarations:** Sub-pages still have inline `font-family: 'Barlow'` declarations that are overridden by shared-theme.css `!important`. Can be cleaned up in a refactor.
-- **shared-theme.css mobile `right: 16px !important`:** Technically stale after dropdown centering fix (should be removed or changed to match `left: 50%`).
+- **Broken OG image:** All 16 pages reference `chuby-profile-CkJq2sVN.jpg` which doesn't exist
+- **CORS wildcard:** `netlify.toml` and `netlify/functions/chat.js` use `Access-Control-Allow-Origin: *`
+- **Chat function input validation:** Add message length/count limits
+- **`--border` CSS variable conflict:** shared-theme.css vs page-local definitions
+- **Security headers:** Add `X-Frame-Options`, `Content-Security-Policy`, `Referrer-Policy`
+- **Dead inline Barlow declarations:** Can be cleaned up in a future refactor
+- **series.html hero description:** Still references "Q1 2026" — should update to Q2-Q4
 
-### Release 2B (Future)
-- **Clash Inna Dancehall pricing:** Workshop and clash pass pricing
+### Release 3 (Future — draft by 8 April, deploy by 9 April)
+- **Dancehall Academy by Hip Hop International** on 10 April
+- **ALL STYLES (September)** section for academy
 - **Terms & Conditions page**
-- **Brand Ambassadorship dedicated page** (currently links to contact.html)
+- **Passion Partnership** — give Passion access to GIT
 
 ## Key Patterns
 
@@ -127,15 +149,24 @@ All 16 HTML files have independent nav menus. Use Python batch script to update 
 | Add/modify Stripe links | Series sub-pages + `series.html` pricing section |
 | Check client notes | `documents/Info Architecture - RELEASE 2 STRIPE WORKING NOTES.docx` |
 
-## Branch State (as of 2026-04-01)
+### Shell Template Pattern (Release 2B)
+- Gradient div backgrounds instead of images (e.g., `linear-gradient(135deg,#1e0a3c,#3b1a78,#110e1f)`)
+- "Shell — Image TBC" gold badge on each placeholder
+- Placeholder copy: "Details coming soon — Esha to provide copy."
+- Stripe buttons: `onclick="window.open('#STRIPE_PLACEHOLDER','_blank')"`
+- To replace: swap gradient div for `<img>`, update text content, replace `#STRIPE_PLACEHOLDER` with live URLs
+
+## Branch State (as of 2026-04-03)
 
 ```
 Remote: git@github.com:chubyesha/chubydice_v2.git (NOT pushed yet)
 
 Branches (all local, unpushed):
   main
-  feat/wire-stripe-links-all-series    (2 commits: Stripe links + noopener)
-  fix/center-dropdown-navigation       (2 commits: centering + series mobile)
-  fix/unified-font-brand-consistency   (2 commits: shared-theme selectors + clash.html)
-  docs/session-and-readme-update       (current: README + session docs)
+  feat/wire-stripe-links-all-series         (2 commits)
+  fix/center-dropdown-navigation            (2 commits)
+  fix/unified-font-brand-consistency        (2 commits)
+  docs/session-and-readme-update            (1 commit)
+  fix/footer-bbk-to-hd-entertainment       (1 commit)
+  feat/release-2b-shell-templates           (current — 1 commit: 6c20da9)
 ```
