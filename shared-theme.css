@@ -72,7 +72,8 @@ h1, h2, h3, h4, h5, h6,
 .best-value-badge, .full-collection-label, .single-label,
 .middle-section-label, .focus-label,
 .card-presenter, .card-price-highlight {
-  font-family: 'Outfit', sans-serif !important;
+  font-family: 'Arial Narrow', 'Helvetica Condensed', 'Roboto Condensed', sans-serif !important;
+  text-transform: uppercase;
 }
 
 p, li, a, button, input, textarea, label, small, span,
