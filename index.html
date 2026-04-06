@@ -793,7 +793,16 @@ section { padding: 100px 40px; }
   padding: 72px 60px;
   text-align: center;
   position: relative; overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.34,1,0.64,1), border-color 0.3s, box-shadow 0.4s;
+  cursor: pointer;
 }
+.academy-tile:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(124,58,237,0.4);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 60px rgba(124,58,237,0.35), 0 0 120px rgba(124,58,237,0.15);
+}
+.academy-tile img { transition: transform 0.6s cubic-bezier(0.34,1,0.64,1), opacity 0.4s; }
+.academy-tile:hover img { transform: scale(1.03); opacity: 0.4; }
 .academy-tile::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 1px;
