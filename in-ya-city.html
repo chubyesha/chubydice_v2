@@ -452,6 +452,78 @@
   .floating-sidebar { display: none; }
 }
 
+
+/* ─── UNIFIED FOOTER ─── */
+footer {
+  background: #0a0812;
+  padding: 80px 32px 32px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-top {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  flex-wrap: wrap; gap: 48px; max-width: 1100px; margin: 0 auto 56px;
+}
+.footer-logo {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 2.2rem; letter-spacing: 0.06em; color: #fff;
+}
+.footer-logo .accent { color: #F5C518; }
+.footer-tagline {
+  font-size: 0.88rem; line-height: 1.65;
+  color: rgba(180,165,220,0.55);
+  font-style: italic; margin: 10px 0 16px;
+  max-width: 260px;
+  border-left: 2px solid rgba(124,58,237,0.3);
+  padding-left: 12px;
+}
+.footer-addr {
+  font-size: 0.78rem; color: rgba(180,165,220,0.55); letter-spacing: 0.03em;
+}
+.footer-addr strong { color: #a78bfa; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.12em; }
+.footer-socials { display: flex; gap: 10px; margin-top: 20px; }
+.footer-socials .social-icon {
+  width: 38px; height: 38px;
+  background: rgba(17,14,31,1);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(180,165,220,0.55);
+  transition: border-color 0.2s, color 0.2s, transform 0.2s, background 0.2s;
+  text-decoration: none;
+}
+.footer-socials .social-icon:hover {
+  border-color: rgba(124,58,237,0.4);
+  color: #a78bfa;
+  transform: translateY(-3px);
+  background: rgba(124,58,237,0.06);
+}
+.footer-links h4 {
+  font-family: 'Outfit', sans-serif; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(180,165,220,0.55); margin-bottom: 18px;
+}
+.footer-links a {
+  display: block; font-size: 0.88rem;
+  color: rgba(220,210,245,0.85); text-decoration: none;
+  margin-bottom: 12px;
+  transition: color 0.2s, padding-left 0.2s;
+}
+.footer-links a:hover { color: #a78bfa; padding-left: 4px; }
+.footer-bottom {
+  max-width: 1100px; margin: 0 auto;
+  padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.06);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom p { font-size: 0.78rem; color: rgba(180,165,220,0.55); }
+.footer-bottom-links { display: flex; gap: 20px; }
+.footer-bottom-links a { font-size: 0.78rem; color: rgba(180,165,220,0.55); text-decoration: none; transition: color 0.2s; }
+.footer-bottom-links a:hover { color: #a78bfa; }
+.footer-credit { font-size: 0.72rem; color: rgba(160,145,200,0.25); text-align: center; margin-top: 20px; }
+@media (max-width: 640px) {
+  footer { padding: 48px 20px 24px; }
+  .footer-top { gap: 32px; }
+}
+
 </style>
 </head>
 <body>
@@ -628,9 +700,51 @@
 })();
 </script>
 
-<!-- BBK PRODUCTIONS CREDIT -->
-<footer style="background:#111111;border-top:1px solid #2A2A2A;padding:20px;text-align:center;">
-  <p style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Site made and managed by BBK Productions</p>
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">CHUBY <span class="accent">DICE</span></div>
+      <p class="footer-tagline">"Dancehall belongs to everybody — but it must stay connected to where it comes from."</p>
+      <p class="footer-addr"><strong>HD Entertainment</strong> · Enter Via, Mount St, Prahran VIC 3181, Australia</p>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/chuby_dice" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/chubydice" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12Z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@chuby_dice" target="_blank" rel="noopener" class="social-icon" aria-label="TikTok">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82A4.28 4.28 0 0 1 13.8 3h-3v12.4a2.6 2.6 0 0 1-2.6 2.6 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 2.6-2.6c.28 0 .56.05.82.13V9.84A5.65 5.65 0 0 0 8.2 9.6a5.8 5.8 0 0 0-5.8 5.8 5.8 5.8 0 0 0 5.8 5.8 5.8 5.8 0 0 0 5.8-5.8V9.86a7.26 7.26 0 0 0 4.2 1.34V8.1a4.28 4.28 0 0 1-1.6-2.28Z"/></svg>
+        </a>
+        <a href="mailto:info@chubydice.com" class="social-icon" aria-label="Email">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="series.html">Classes</a>
+      <a href="about.html">About Chuby</a>
+      <a href="coaching.html">Coaching</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-links">
+      <h4>Events</h4>
+      <a href="in-ya-city.html">In Ya City</a>
+      <a href="clash.html">Clash</a>
+      <a href="academy.html">Academy</a>
+      <a href="past-series.html">Past Sessions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Chuby Dice Dance Academy. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-credit">Site made and managed by HD Entertainment</div>
 </footer>
 </body>
 </html>
