@@ -311,9 +311,104 @@
   .menu-group-items a { display: block; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; padding: 8px 14px !important; }
   .menu-group-items a:hover { color: var(--yellow) !important; }
 
+
+/* ─── FLOATING SOCIAL SIDEBAR ─── */
+.floating-sidebar {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 950;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(245,197,24,0.1);
+  border: 1.5px solid #F5C518;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #F5C518;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.sidebar-icon:hover,
+.sidebar-icon:focus-visible {
+  background: #F5C518;
+  color: #000;
+  transform: scale(1.12);
+}
+
+.sidebar-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Tooltip — appears to the LEFT of icons */
+.sidebar-icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: calc(100% + 12px);
+  white-space: nowrap;
+  background: #000;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(255,255,255,0.06);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar-icon:focus-visible {
+  outline: 2px solid #F5C518;
+  outline-offset: 3px;
+}
+
+.sidebar-icon:hover::after,
+.sidebar-icon:focus::after {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .floating-sidebar { display: none; }
+}
+
 </style>
 </head>
 <body>
+
+<!-- FLOATING SOCIAL SIDEBAR -->
+<aside class="floating-sidebar" aria-label="Social links">
+  <a href="https://www.instagram.com/chuby_dice" target="_blank" rel="noopener" class="sidebar-icon" data-tooltip="INSTAGRAM" aria-label="Follow on Instagram">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5A4.25 4.25 0 0 0 16.25 3.5Zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5Zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5Zm5.5-1.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
+  </a>
+  <a href="https://www.facebook.com/chubydice" target="_blank" rel="noopener" class="sidebar-icon" data-tooltip="FACEBOOK" aria-label="Follow on Facebook">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.12 8.44 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99C18.34 21.12 22 16.99 22 12Z"/></svg>
+  </a>
+  <a href="https://www.tiktok.com/@chuby_dice" target="_blank" rel="noopener" class="sidebar-icon" data-tooltip="TIKTOK" aria-label="Follow on TikTok">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 13.8 3h-3v12.4a2.6 2.6 0 0 1-2.6 2.6 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 2.6-2.6c.28 0 .56.05.82.13V9.84A5.65 5.65 0 0 0 8.2 9.6a5.8 5.8 0 0 0-5.8 5.8 5.8 5.8 0 0 0 5.8 5.8 5.8 5.8 0 0 0 5.8-5.8V9.86a7.26 7.26 0 0 0 4.2 1.34V8.1a4.28 4.28 0 0 1-1.6-2.28Z"/></svg>
+  </a>
+  <a href="tel:+61449726776" class="sidebar-icon" data-tooltip="CALL" aria-label="Call Chuby Dice">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2Z"/></svg>
+  </a>
+  <a href="contact.html" class="sidebar-icon" data-tooltip="LOCATION" aria-label="Find us">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/></svg>
+  </a>
+</aside>
+
 
 <!-- NAV -->
 <nav>
