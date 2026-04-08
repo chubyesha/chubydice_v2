@@ -346,13 +346,6 @@ nav.scrolled {
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 
-/* Glitch effect on hover */
-
-  60% { text-shadow: -3px 0 var(--cyan); clip-path: inset(40% 0 40% 0); }
-  80% { text-shadow: 3px 0 var(--pink); clip-path: inset(0% 0 80% 0); }
-  100% { text-shadow: none; clip-path: none; }
-}
-
 /* Subtitle */
 .hero-sub {
   font-family: 'DM Sans', sans-serif; font-weight: 300;
@@ -1973,6 +1966,54 @@ document.addEventListener('click', function(e) {
     badge.className = 's-countdown-badge';
     badge.textContent = 'Starts in ' + days + (days === 1 ? ' day' : ' days');
     tile.appendChild(badge);
+  });
+})();
+</script>
+
+<script>
+/* ── HERO TITLE SCRAMBLE ANIMATION (V1 port) ── */
+(function () {
+  var CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?';
+
+  function scrambleTitle(el) {
+    var spans = el.querySelectorAll('span');
+    spans.forEach(function (span) {
+      var original = span.dataset.value || span.textContent;
+      span.dataset.value = original;
+      var iteration = 0;
+      clearInterval(span._glitch);
+      span._glitch = setInterval(function () {
+        span.textContent = original
+          .split('')
+          .map(function (ch, i) {
+            if (ch === ' ') return ' ';
+            if (i < Math.floor(iteration)) return original[i];
+            return CHARS[Math.floor(Math.random() * CHARS.length)];
+          })
+          .join('');
+        iteration += 0.45;
+        if (iteration > original.length) {
+          clearInterval(span._glitch);
+          span.textContent = original;
+        }
+      }, 35);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var title = document.querySelector('.hero-title');
+    if (!title) return;
+    title.style.cursor = 'default';
+
+    /* Run scramble once after the slide-up animation finishes (1.4s = 0.4s delay + 1s duration) */
+    setTimeout(function () {
+      scrambleTitle(title);
+    }, 1400);
+
+    /* Re-scramble on hover */
+    title.addEventListener('mouseenter', function () {
+      scrambleTitle(title);
+    });
   });
 })();
 </script>
